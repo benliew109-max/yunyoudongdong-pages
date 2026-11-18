@@ -1,0 +1,34 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="351" height="60" viewBox="0 0 351 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#229;&#183;&#166;">
+<mask id="mask0_0_775" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="351" height="60">
+<path id="bg-Gradient" d="M0 0H351V60H0V0Z" fill="url(#paint0_linear_0_775)"/>
+</mask>
+<g mask="url(#mask0_0_775)">
+<g id="bg-Gradient_2">
+<path d="M0 16C0 7.16344 7.16344 0 16 0H335C343.837 0 351 7.16344 351 16V60H12C5.37258 60 0 54.6274 0 48V16Z" fill="url(#paint1_linear_0_775)"/>
+<mask id="stroke0_0_775" fill="white">
+<path d="M0 16C0 7.16344 7.16344 0 16 0H335C343.837 0 351 7.16344 351 16V60H12C5.37258 60 0 54.6274 0 48V16Z"/>
+</mask>
+<path d="M351 60V16C351 7.16345 343.837 0 335 0H16C7.16344 0 0 7.16344 0 16V48C0 54.6274 5.37258 60 12 60H351Z" stroke-width="4" stroke="white" mask="url(#stroke0_0_775)"/>
+</g>
+<g id="tab">
+<path id="bg-white &#233;&#128;&#137;&#228;&#184;&#173;" d="M2 14C2 7.37258 7.37258 2 14 2H163C169.627 2 175 7.37258 175 14V34C175 40.6274 180.373 46 187 46H199.268H2V14Z" fill="white"/>
+<g id="tab_2">
+</g>
+<g id="tab_3">
+</g>
+<path id="bg-white" d="M0 46H339C345.627 46 351 51.3726 351 58V337C351 345.837 343.837 353 335 353H16C7.16344 353 0 345.837 0 337V46Z" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_775" x1="175.5" y1="1.97064e-08" x2="175.781" y2="60.001" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B8FFFF"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_775" x1="175.5" y1="1.97064e-08" x2="175.781" y2="60.001" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B8FFFF"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>

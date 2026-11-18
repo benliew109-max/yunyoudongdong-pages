@@ -1,0 +1,68 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="&#231;&#190;&#142;&#233;&#163;&#159;&#229;&#164;&#150;&#229;&#141;&#150;">
+<mask id="mask0_0_895" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+<rect id="Rectangle" width="32" height="32" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_0_895)">
+<path id="Vector" d="M6.4944 3.2C5.55861 3.2 4.8 3.95861 4.8 4.8944V9.6H22.4V4.8944C22.4 3.95861 21.6414 3.2 20.7056 3.2H6.4944ZM15.2 5.6H12C11.5582 5.6 11.2 5.95817 11.2 6.4C11.2 6.84183 11.5582 7.2 12 7.2H15.2C15.6418 7.2 16 6.84183 16 6.4C16 5.95817 15.6418 5.6 15.2 5.6Z" fill-rule="evenodd" clip-rule="evenodd" fill="#22FCF0" fill-opacity="0.9"/>
+<g id="Vector_2">
+<use xlink:href="#stroke0_0_895" fill="url(#paint0_linear_0_895)"/>
+<mask id="stroke1_0_895" fill="white">
+<use xlink:href="#stroke0_0_895"/>
+</mask>
+<path d="M2.4 15.0057C2.4 14.0796 2.60098 13.1645 2.98906 12.3237L4.8 9.2L22.4 9.2L24.2109 12.3237C24.599 13.1645 24.8 14.0796 24.8 15.0057V26.4C24.8 28.1673 23.3673 29.6 21.6 29.6H5.6C3.83269 29.6 2.4 28.1673 2.4 26.4V15.0057Z" stroke-width="0.8" stroke="url(#paint1_linear_0_895)" mask="url(#stroke1_0_895)"/>
+</g>
+<mask id="stroke2_0_895" fill="white">
+<path d="M20.7057 3.2C21.6414 3.20003 22.4 3.9586 22.4 4.89434V9.2L24.2105 12.324C24.5986 13.1648 24.8004 14.0796 24.8004 15.0057V26.4002C24.8003 28.1674 23.3674 29.6003 21.6002 29.6004H5.6002C3.83295 29.6004 2.40011 28.1674 2.4 26.4002V15.0057C2.4 14.0797 2.60089 13.1648 2.98887 12.324L4.80039 9.2V4.89434C4.80043 3.95857 5.55896 3.2 6.49473 3.2H20.7057ZM11.9996 5.60039C11.558 5.6006 11.1998 5.9585 11.1998 6.4002C11.1999 6.8418 11.558 7.19979 11.9996 7.2H15.1998C15.6416 7.2 15.9995 6.84193 15.9996 6.4002C15.9996 5.95837 15.6416 5.60039 15.1998 5.60039H11.9996Z"/>
+</mask>
+<path id="Union" d="M20.7057 3.2C21.6414 3.20003 22.4 3.9586 22.4 4.89434V9.2L24.2105 12.324C24.5986 13.1648 24.8004 14.0796 24.8004 15.0057V26.4002C24.8003 28.1674 23.3674 29.6003 21.6002 29.6004H5.6002C3.83295 29.6004 2.40011 28.1674 2.4 26.4002V15.0057C2.4 14.0797 2.60089 13.1648 2.98887 12.324L4.80039 9.2V4.89434C4.80043 3.95857 5.55896 3.2 6.49473 3.2H20.7057ZM11.9996 5.60039C11.558 5.6006 11.1998 5.9585 11.1998 6.4002C11.1999 6.8418 11.558 7.19979 11.9996 7.2H15.1998C15.6416 7.2 15.9995 6.84193 15.9996 6.4002C15.9996 5.95837 15.6416 5.60039 15.1998 5.60039H11.9996Z" stroke-width="0.8" stroke="url(#paint2_linear_0_895)" mask="url(#stroke2_0_895)"/>
+<path id="Rectangle 1312323671" d="M27.6 21.6H29.2C30.5255 21.6 31.6 22.6745 31.6 24C31.6 25.3255 30.5255 26.4 29.2 26.4H27.6V21.6Z" fill="#1F86FF"/>
+<foreignObject x="12.8" y="16.8" width="19.2004" height="16.0002"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(1.2px);clip-path:url(#bgblur_0_0_895_clip_path);height:100%;width:100%"></div></foreignObject><g id="Union_2" data-figma-bg-blur-radius="2.4">
+<use xlink:href="#stroke3_0_895" fill="url(#paint3_linear_0_895)" fill-opacity="0.8"/>
+<mask id="stroke4_0_895" fill="white">
+<use xlink:href="#stroke3_0_895"/>
+</mask>
+<path d="M28.3074 19.2C29.021 19.2 29.6002 19.7784 29.6004 20.492V23.2C29.6004 27.1764 26.3766 30.4001 22.4002 30.4002C18.4237 30.4002 15.2 27.1764 15.2 23.2V20.492C15.2002 19.7785 15.7785 19.2002 16.492 19.2H28.3074Z" stroke-width="0.8" stroke="url(#paint4_linear_0_895)" mask="url(#stroke4_0_895)"/>
+</g>
+<g id="Union_3">
+</g>
+<g id="Vector_3">
+<use xlink:href="#stroke5_0_895" fill="url(#paint5_linear_0_895)"/>
+<mask id="stroke6_0_895" fill="white">
+<use xlink:href="#stroke5_0_895"/>
+</mask>
+<path d="M20.5768 12.2189C20.5768 12.2189 21.1923 12.9322 20.0583 14.9704C18.8283 17.1809 21.8245 18.5596 21.8245 18.5596C21.8245 18.5596 21.1864 17.6253 22.2689 16.2011C23.8928 14.0648 20.5768 12.2189 20.5768 12.2189Z" stroke-width="0.32" stroke="white" stroke-opacity="0.5" mask="url(#stroke6_0_895)"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="bgblur_0_0_895_clip_path" transform="translate(-12.8 -16.8)"><path d="M28.3074 19.2C29.021 19.2 29.6002 19.7784 29.6004 20.492V23.2C29.6004 27.1764 26.3766 30.4001 22.4002 30.4002C18.4237 30.4002 15.2 27.1764 15.2 23.2V20.492C15.2002 19.7785 15.7785 19.2002 16.492 19.2H28.3074Z"/>
+</clipPath><linearGradient id="paint0_linear_0_895" x1="13.9259" y1="7.91584" x2="13.7432" y2="29.3917" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00ECEC"/>
+<stop offset="1" stop-color="#00BDB0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_895" x1="14.4" y1="6.90909" x2="14.4" y2="26.3146" gradientUnits="userSpaceOnUse">
+<stop stop-color="#84FEF1"/>
+<stop offset="1" stop-color="#00B9AF"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_895" x1="13.6002" y1="2.4457" x2="13.6002" y2="29.6004" gradientUnits="userSpaceOnUse">
+<stop stop-color="#3CEFE5"/>
+<stop offset="1" stop-color="#00ACA2"/>
+</linearGradient>
+<linearGradient id="paint3_linear_0_895" x1="22.4002" y1="30.4002" x2="22.4002" y2="19.2" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0073FF"/>
+<stop offset="1" stop-color="#24D0FF"/>
+</linearGradient>
+<linearGradient id="paint4_linear_0_895" x1="22.4002" y1="19.2" x2="22.4002" y2="30.4002" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00BBFF"/>
+<stop offset="1" stop-color="#0089DD"/>
+</linearGradient>
+<linearGradient id="paint5_linear_0_895" x1="21.9112" y1="11.8937" x2="20.8001" y2="17.7899" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0.8"/>
+</linearGradient>
+<path id="stroke0_0_895" d="M2.4 15.0057C2.4 14.0796 2.60098 13.1645 2.98906 12.3237L4.8 9.2L22.4 9.2L24.2109 12.3237C24.599 13.1645 24.8 14.0796 24.8 15.0057V26.4C24.8 28.1673 23.3673 29.6 21.6 29.6H5.6C3.83269 29.6 2.4 28.1673 2.4 26.4V15.0057Z"/>
+<path id="stroke3_0_895" d="M28.3074 19.2C29.021 19.2 29.6002 19.7784 29.6004 20.492V23.2C29.6004 27.1764 26.3766 30.4001 22.4002 30.4002C18.4237 30.4002 15.2 27.1764 15.2 23.2V20.492C15.2002 19.7785 15.7785 19.2002 16.492 19.2H28.3074Z"/>
+<path id="stroke5_0_895" d="M20.0583 14.9704C21.1923 12.9322 20.5768 12.2189 20.5768 12.2189C20.5768 12.2189 23.8928 14.0648 22.2689 16.2011C21.1864 17.6253 21.8245 18.5596 21.8245 18.5596C21.8245 18.5596 18.8283 17.1809 20.0583 14.9704Z"/>
+</defs>
+</svg>

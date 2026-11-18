@@ -1,0 +1,71 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="&#229;&#156;&#176;&#233;&#147;&#129;&#229;&#141;&#161;&#229;&#133;&#133;&#229;&#128;&#188;">
+<mask id="mask0_0_956" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+<rect id="Rectangle" width="32" height="32" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_0_956)">
+<g id="Vector">
+<use xlink:href="#stroke0_0_956" fill="url(#paint0_linear_0_956)"/>
+<mask id="stroke1_0_956" fill="white">
+<use xlink:href="#stroke0_0_956"/>
+</mask>
+<path d="M6.4 29.6L20.8 29.6C22.5673 29.6 24 28.1673 24 26.4L24 7.2C24 5.43269 22.5673 4 20.8 4L6.4 4C4.63269 4 3.2 5.43269 3.2 7.2L3.2 26.4C3.2 28.1673 4.63269 29.6 6.4 29.6Z" stroke-width="0.8" stroke="url(#paint1_linear_0_956)" mask="url(#stroke1_0_956)"/>
+</g>
+<g id="Union">
+<use xlink:href="#stroke2_0_956" fill="url(#paint2_linear_0_956)"/>
+<mask id="stroke3_0_956" fill="white">
+<use xlink:href="#stroke2_0_956"/>
+</mask>
+<path d="M13.5996 12.8C14.0414 12.8 14.4003 13.1581 14.4004 13.5998C14.4004 14.0416 14.0414 14.3996 13.5996 14.3996H10.4004V15.8342C10.4004 16.1905 9.96878 16.3694 9.7168 16.1174L7.08301 13.4826C6.83112 13.2307 7.00915 12.8003 7.36523 12.8H13.5996ZM11.2002 8.16523C11.2005 7.80914 11.6309 7.63112 11.8828 7.88301L14.5176 10.5168C14.7694 10.7688 14.5906 11.2003 14.2344 11.2004H8C7.55817 11.2004 7.2002 10.8414 7.2002 10.3996C7.20039 9.95794 7.55829 9.5998 8 9.5998H11.2002V8.16523Z" stroke-width="0.32" stroke="white" stroke-opacity="0.5" mask="url(#stroke3_0_956)"/>
+</g>
+<g id="icon">
+<foreignObject x="10.8804" y="15.2" width="21.9196" height="16.8"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(1.2px);clip-path:url(#bgblur_0_0_956_clip_path);height:100%;width:100%"></div></foreignObject><g id="Vector_2" data-figma-bg-blur-radius="2.4">
+<use xlink:href="#stroke4_0_956" fill="url(#paint3_linear_0_956)" fill-opacity="0.8"/>
+<mask id="stroke5_0_956" fill="white">
+<use xlink:href="#stroke4_0_956"/>
+</mask>
+<path d="M15.6844 29.6H28.8C29.6837 29.6 30.4 28.8837 30.4 28V19.2C30.4 18.3163 29.6837 17.6 28.8 17.6L20.9126 17.6C19.8427 17.6 18.8435 18.1347 18.25 19.025L13.6875 25.8687C12.6242 27.4637 13.7676 29.6 15.6844 29.6Z" stroke-width="0.8" stroke="url(#paint4_linear_0_956)" mask="url(#stroke5_0_956)"/>
+</g>
+<path id="Vector_3" d="M17.5202 27.7757C17.8242 27.4109 18.2746 27.2 18.7494 27.2H29.6V28C29.6 28.8837 28.8837 29.6 28 29.6H16L17.5202 27.7757Z" fill="#0068E7" fill-opacity="0.5"/>
+<g id="Union_2">
+<use xlink:href="#stroke6_0_956" fill="url(#paint5_linear_0_956)"/>
+<mask id="stroke7_0_956" fill="white">
+<use xlink:href="#stroke6_0_956"/>
+</mask>
+<path d="M19.2785 21.6C19.5926 21.6002 19.7839 21.9459 19.6174 22.2123L18.4699 24.0482C18.1776 24.5158 17.665 24.8001 17.1135 24.8002H14.8L16.8 21.6H19.2785ZM30.0002 24.8002H21.4436C20.8152 24.8002 20.4318 24.1084 20.7648 23.5756L21.7648 21.976C21.911 21.7421 22.1677 21.6 22.4436 21.6H30.0002V24.8002Z" stroke-width="0.32" stroke="white" stroke-opacity="0.5" mask="url(#stroke7_0_956)"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="bgblur_0_0_956_clip_path" transform="translate(-10.8804 -15.2)"><path d="M20.9129 17.8002H28.7996C29.5727 17.8002 30.1998 18.4266 30.2 19.1996V28.0004C30.1998 28.7734 29.5727 29.3998 28.7996 29.3998H15.6844C13.9273 29.3998 12.8796 27.4419 13.8543 25.9799L18.4168 19.1361C18.9732 18.3015 19.9098 17.8002 20.9129 17.8002Z"/>
+</clipPath><linearGradient id="paint0_linear_0_956" x1="12.95" y1="4" x2="12.95" y2="28.8" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00E5E5"/>
+<stop offset="1" stop-color="#00C5B8"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_956" x1="12.95" y1="4" x2="12.95" y2="25.4682" gradientUnits="userSpaceOnUse">
+<stop stop-color="#38F6E3"/>
+<stop offset="1" stop-color="#00B9AF"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_956" x1="10.8" y1="6.96484" x2="10.8" y2="15.4351" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0.8"/>
+</linearGradient>
+<linearGradient id="paint3_linear_0_956" x1="20.8" y1="29.6" x2="20.8" y2="17.6" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0D7AFF"/>
+<stop offset="1" stop-color="#24D0FF"/>
+</linearGradient>
+<linearGradient id="paint4_linear_0_956" x1="20.8" y1="17.6" x2="20.8" y2="29.6" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00BBFF"/>
+<stop offset="1" stop-color="#0089DD"/>
+</linearGradient>
+<linearGradient id="paint5_linear_0_956" x1="21.6" y1="21.6" x2="21.6" y2="24.8" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0.8"/>
+</linearGradient>
+<path id="stroke0_0_956" d="M3.2 7.2C3.2 5.43269 4.63269 4 6.4 4L20.8 4C22.5673 4 24 5.43269 24 7.2L24 26.4C24 28.1673 22.5673 29.6 20.8 29.6L6.4 29.6C4.63269 29.6 3.2 28.1673 3.2 26.4L3.2 7.2Z"/>
+<path id="stroke2_0_956" d="M13.5996 12.8C14.0414 12.8 14.4003 13.1581 14.4004 13.5998C14.4004 14.0416 14.0414 14.3996 13.5996 14.3996H10.4004V15.8342C10.4004 16.1905 9.96878 16.3694 9.7168 16.1174L7.08301 13.4826C6.83112 13.2307 7.00915 12.8003 7.36523 12.8H13.5996ZM11.2002 8.16523C11.2005 7.80914 11.6309 7.63112 11.8828 7.88301L14.5176 10.5168C14.7694 10.7688 14.5906 11.2003 14.2344 11.2004H8C7.55817 11.2004 7.2002 10.8414 7.2002 10.3996C7.20039 9.95794 7.55829 9.5998 8 9.5998H11.2002V8.16523Z"/>
+<path id="stroke4_0_956" d="M18.25 19.025C18.8435 18.1347 19.8427 17.6 20.9126 17.6L28.8 17.6C29.6837 17.6 30.4 18.3163 30.4 19.2V28C30.4 28.8837 29.6837 29.6 28.8 29.6H15.6844C13.7676 29.6 12.6242 27.4637 13.6875 25.8687L18.25 19.025Z"/>
+<path id="stroke6_0_956" d="M19.2785 21.6C19.5926 21.6002 19.7839 21.9459 19.6174 22.2123L18.4699 24.0482C18.1776 24.5158 17.665 24.8001 17.1135 24.8002H14.8L16.8 21.6H19.2785ZM30.0002 24.8002H21.4436C20.8152 24.8002 20.4318 24.1084 20.7648 23.5756L21.7648 21.976C21.911 21.7421 22.1677 21.6 22.4436 21.6H30.0002V24.8002Z"/>
+</defs>
+</svg>

@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16.755" height="18.75" viewBox="0 0 16.755 18.75" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon">
+<path id="Subtract" d="M5.255 1.25C5.66921 1.25 6.005 1.58579 6.005 2C6.00496 2.41418 5.66919 2.75 5.255 2.75H3.755C2.51236 2.75 1.505 3.75736 1.505 5V14C1.50504 15.2426 2.51238 16.25 3.755 16.25H10.755C11.9976 16.25 13.005 15.2426 13.005 14V12C13.005 11.5858 13.3408 11.25 13.755 11.25C14.1692 11.25 14.505 11.5858 14.505 12V14C14.505 16.071 12.826 17.75 10.755 17.75H3.755C1.68396 17.75 0.00503855 16.071 0.005 14V5C0.00500128 2.92893 1.68393 1.25 3.755 1.25H5.255Z" fill="#1A1A1A"/>
+<mask id="stroke0_0_1046" fill="white">
+<path d="M11.755 0C14.5164 0 16.755 2.23858 16.755 5C16.755 7.76142 14.5164 10 11.755 10C8.99358 10 6.755 7.76142 6.755 5C6.755 2.23858 8.99358 0 11.755 0Z"/>
+</mask>
+<path id="Subtract_2" d="M11.755 0C14.5164 0 16.755 2.23858 16.755 5C16.755 7.76142 14.5164 10 11.755 10C8.99358 10 6.755 7.76142 6.755 5C6.755 2.23858 8.99358 0 11.755 0Z" stroke-width="3" stroke="#1A1A1A" mask="url(#stroke0_0_1046)"/>
+<path id="Vector 4965" d="M11.755 3.5V5H13.255" stroke-width="1.51" stroke-linecap="round" stroke-linejoin="round" stroke="#1A1A1A"/>
+<path id="Vector 4966" d="M0.755 13L13.255 13" stroke-width="1.51" stroke-linecap="round" stroke="#1A1A1A"/>
+<path id="Vector 4969" d="M4.755 17V18" stroke-width="1.5" stroke-linecap="round" stroke="#1A1A1A"/>
+<path id="Vector 4970" d="M9.755 17V18" stroke-width="1.5" stroke-linecap="round" stroke="#1A1A1A"/>
+</g>
+</svg>

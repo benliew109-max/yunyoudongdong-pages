@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="keyline">
+<path id="keyline_2" d="M2.66 2.66H25.34V25.34H2.66V2.66Z" stroke-width="0.07" stroke="#FFB628"/>
+<path id="keyline_3" d="M4.41 4.41H23.59V23.59H4.41V4.41Z" stroke-width="0.07" stroke="#006198"/>
+<path id="keyline_4" d="M5.285 2.66H22.715V25.34H5.285V2.66Z" stroke-width="0.07" stroke="#EA5959"/>
+<path id="keyline_5" d="M2.66 5.285H25.34V22.715H2.66V5.285Z" stroke-width="0.07" stroke="#009A2B"/>
+<mask id="stroke0_0_791" fill="white">
+<path d="M25.2 14C25.2 20.1856 20.1856 25.2 14 25.2C7.81441 25.2 2.8 20.1856 2.8 14C2.8 7.81441 7.81441 2.8 14 2.8C20.1856 2.8 25.2 7.81441 25.2 14Z"/>
+</mask>
+<ellipse id="keyline_6" cx="14" cy="14" rx="11.2" ry="11.2" stroke-width="0.14" stroke="#8400D6" mask="url(#stroke0_0_791)"/>
+<path id="keyline_7" d="M0 14H28" stroke-width="0.07" stroke="#FFAD7E"/>
+<path id="keyline_8" d="M14 1.5299e-09L14 28" stroke-width="0.07" stroke="#FFAD7E"/>
+</g>
+</svg>

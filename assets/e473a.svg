@@ -1,0 +1,19 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="20.0295" height="20.0295" viewBox="0 0 20.0295 20.0295" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="keyline" opacity="0.8">
+<rect id="&#230;&#150;&#185;&#229;&#189;&#162;" x="2.53557" y="2.53556" width="14.9583" height="14.9583" stroke-width="0.0416667" stroke="#0055FF"/>
+<rect id="&#231;&#159;&#169;&#229;&#189;&#162;_&#230;&#168;&#170;" x="1.70223" y="3.3689" width="16.625" height="13.2917" stroke-width="0.0416667" stroke="#00CC00"/>
+<rect id="&#231;&#159;&#169;&#229;&#189;&#162;_&#231;&#171;&#150;" x="3.3689" y="1.70223" width="13.2917" height="16.625" stroke-width="0.0416667" stroke="#FF3131"/>
+<circle id="&#229;&#156;&#134;&#229;&#189;&#162;_&#229;&#164;&#150;" cx="10.0147" cy="10.0147" r="8.3125" stroke-width="0.0416667" stroke="#AA00FF"/>
+<mask id="stroke0_0_1994" fill="white">
+<path d="M10.0147 1.6814L18.3481 16.6814H1.6814L10.0147 1.6814Z"/>
+</mask>
+<path id="&#228;&#184;&#137;&#232;&#167;&#146;_&#229;&#164;&#150;" d="M10.0147 1.6814L18.3481 16.6814H1.6814L10.0147 1.6814Z" stroke-width="0.0833333" stroke="#FF9900" mask="url(#stroke0_0_1994)"/>
+<rect id="&#230;&#150;&#185;&#229;&#189;&#162;_&#229;&#134;&#133;" x="6.70223" y="6.70223" width="6.625" height="6.625" stroke-width="0.0416667" stroke="#1A1A1A"/>
+<g id="&#229;&#175;&#185;&#232;&#167;&#146;&#231;&#186;&#191;">
+<path id="Vector 3" d="M20.0147 0.0147314L0.014732 20.0147" stroke-width="0.0416667" stroke="#1F4C9A" stroke-opacity="0.3"/>
+<path id="Vector 2" d="M0.0147324 0.0147314L20.0147 20.0147" stroke-width="0.0416667" stroke="#1F4C9A" stroke-opacity="0.3"/>
+<path id="Vector 6" d="M10.0147 0.0147314V20.0147" stroke-width="0.0416667" stroke="#1F4C9A" stroke-opacity="0.3"/>
+<path id="Vector 7" d="M0.0147324 10.0147H20.0147" stroke-width="0.0416667" stroke="#1F4C9A" stroke-opacity="0.3"/>
+</g>
+</g>
+</svg>

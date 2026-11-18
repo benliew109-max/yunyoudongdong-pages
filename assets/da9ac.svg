@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="100" height="36.2802" viewBox="0 0 100 36.2802" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Rectangle 1312323637">
+<use xlink:href="#stroke0_0_702" fill="url(#paint0_linear_0_702)"/>
+<mask id="stroke1_0_702" fill="white">
+<use xlink:href="#stroke0_0_702"/>
+</mask>
+<path d="M44.5 31L48.8943 35.7937C49.4888 36.4423 50.5112 36.4423 51.1057 35.7937L55.5 31H92C96.4183 31 100 27.4183 100 23V8C100 3.58172 96.4183 0 92 0H8C3.58172 0 0 3.58172 0 8V23C0 27.4183 3.58172 31 8 31H44.5Z" stroke-width="2" stroke="white" mask="url(#stroke1_0_702)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_702" x1="85.5" y1="12" x2="-1.45055" y2="14.0736" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#E2FFF7"/>
+</linearGradient>
+<path id="stroke0_0_702" d="M0 8C0 3.58172 3.58172 0 8 0H92C96.4183 0 100 3.58172 100 8V23C100 27.4183 96.4183 31 92 31H55.5L51.1057 35.7937C50.5112 36.4423 49.4888 36.4423 48.8943 35.7937L44.5 31H8C3.58172 31 0 27.4183 0 23V8Z"/>
+</defs>
+</svg>
