@@ -33,3 +33,10 @@ body{overflow:hidden}#viewport{overflow:clip}.content{height:606px}
 .ai-carousel.dragging .ai-carousel-card{cursor:grabbing}
 .ai-carousel img{-webkit-user-drag:none;user-select:none}
 .ai-recommendation-intro{font-size:13px;line-height:23px;color:#4f5259}
+/* Updated Figma screens, November 19. */
+.preference-sheet button{height:32px;padding-inline:8px}
+.route-result-scroll{position:absolute;left:0;top:88px;width:375px;height:690px;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+.route-result-scroll::-webkit-scrollbar{display:none}
+.route-result-fixed{z-index:3}.result-save{top:56px;right:60px;z-index:10}
+.result-day-highlight{outline:2px solid #00d2d2;outline-offset:5px;border-radius:8px}
+.navigation-stop{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #edf1f5;font-size:13px}.navigation-stop span:last-child{color:#00b1b8}
