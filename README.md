@@ -1,7 +1,5 @@
 # 云游咚咚 Demo
 
-GitHub Pages 静态发布文件。
+在线体验：https://benliew109-max.github.io/yunyoudongdong-pages/
 
-访问：https://benliew109-max.github.io/yunyoudongdong-pages/
-
-仅包含网页运行所需的 HTML、CSS、JavaScript、页面数据和素材。
+已同步 2026-11-19 Figma UI。仅包含静态运行文件；完整源码保留在私有仓库。
