@@ -53,3 +53,18 @@ body{overflow:hidden}#viewport{overflow:clip}.content{height:606px}
 .history-date{font-size:13px;color:#8d9199;font-weight:500;margin:8px 0 12px}
 .conversation-row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;color:#1a1a1a}
 .conversation-copy{display:flex;flex-direction:column;gap:8px;min-width:0}.conversation-copy strong{font-size:14px;font-weight:600;line-height:21px}.conversation-copy small{font-size:12px;color:#8d9199;line-height:18px}
+/* Dedicated point-to-point search, Figma 9134:12993 / 9137:15051. */
+.lookup-field{position:absolute;left:84px;width:232px;height:20px;line-height:20px;padding:0;background:transparent;border:0;color:#1a1a1a;font-size:14px;outline:none;border-radius:0}
+.lookup-field::placeholder{color:#8d9199;opacity:1}.lookup-field:focus-visible{outline:none}
+.lookup-page [data-node-id="9135:13821"]{overflow-y:auto;scrollbar-width:none}
+.lookup-history-row{flex-shrink:0}.lookup-empty{font-size:13px;color:#8d9199;line-height:22px}
+.lookup-routes{left:16px!important;transform:none!important;width:343px;height:578px;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain;padding-bottom:16px}
+.lookup-route-card{flex-shrink:0;cursor:pointer}.lookup-mode-selected{background:#a3fff3!important;font-weight:600}.lookup-mode-unselected{background:#f7f9fa!important;font-weight:400}
+.lookup-taxi-card{height:auto!important;min-height:120px;gap:12px;display:flex;flex-direction:column;align-items:flex-start}.lookup-taxi-card h2{font-size:16px}.lookup-taxi-card p{font-size:14px}.lookup-taxi-card small{font-size:12px;color:#8d9199}
+.lookup-detail-map{width:100%;height:190px;object-fit:cover;border-radius:12px}
+@media(max-width:500px){.lookup-page [data-name="AlphabeticKeyboard"]{display:none}}
+
+.lookup-page[data-node-id="9137:15051"] [data-name="切换_switch 1"]{transform:rotate(-90deg)}
+.result-homebar{z-index:5}
+
+.route-result-scroll [data-name="气泡"]{max-width:335px}.route-result-scroll [data-name="气泡"] p{max-width:311px;white-space:normal;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}

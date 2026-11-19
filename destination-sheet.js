@@ -3,7 +3,7 @@ let destinationSectionHeading=null;
 function wireDestinationSheet(){
  const root=$('#screen > div'),mask=$('[data-node-id="9099:16644"]');
  const panel=$('[data-node-id="9122:2223"]');
- const base=document.createElement('div');base.className='destination-underlay';for(const child of [...root.children]){if(child===panel)break;base.append(child)}if(sheetUnderlay)base.innerHTML=sheetUnderlay;base.inert=true;base.setAttribute('aria-hidden','true');root.prepend(base);
+ const base=document.createElement('div');base.className='destination-underlay';for(const child of [...root.children]){if(child!==panel&&child.dataset.name!=='btn')base.append(child)}if(sheetUnderlay)base.innerHTML=sheetUnderlay;base.inert=true;base.setAttribute('aria-hidden','true');root.prepend(base);
  root.classList.add('destination-sheet');root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label',returnTo==='origin'?'选择出发点':'添加目的地');
  const list=$('[data-node-id="9099:16757"]');
  destinationTemplates=[...list.children].map(row=>({name:row.querySelectorAll('p')[0].textContent.trim(),description:row.querySelectorAll('p')[1].textContent.trim(),node:row.cloneNode(true)}));
@@ -46,7 +46,7 @@ function confirmDestinationSheet(){
 // Figma 9124:6167 — preference choices use a draft until confirmed.
 function wirePreferenceSheet(){
  const root=$('#screen > div'),panel=root.querySelector('[data-name="面板"]');
- const base=document.createElement('div');base.className='destination-underlay';for(const child of [...root.children]){if(child===panel)break;base.append(child)}base.innerHTML=preferenceUnderlay||screens[ids.destination];base.inert=true;root.prepend(base);
+ const base=document.createElement('div');base.className='destination-underlay';for(const child of [...root.children]){if(child!==panel&&child.dataset.name!=='btn')base.append(child)}base.innerHTML=preferenceUnderlay||screens[ids.destination];base.inert=true;base.setAttribute('aria-hidden','true');root.prepend(base);
  root.classList.add('preference-sheet');root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','出行偏好');
  const options={preference:['美食打卡','微醺','City walk','好友聚餐','安静独处','购物逛街'],transport:['公共交通','步行','自驾','骑行'],party:['独自','朋友','情侣','一家人'],duration:['0.5天','1天','3天','自定义']};
  const groups=[...panel.children].filter(n=>n.dataset.name!=='mask'&&n.querySelector('button'));
@@ -58,18 +58,20 @@ function wirePreferenceSheet(){
 
 // Full-height Figma result art stays intact inside a scrollable viewport.
 function wireLongResult(page){
- const root=$('#screen > div'),height=['dayResult','coffeeResult'].includes(page)?1716:2400;
+ const root=$('#screen > div'),height=['dayResult','coffeeResult'].includes(page)?1800:2400;
  const fixed=[...root.children].filter(n=>/^(Navigation|Titlebar|iOS\/Bars\/Home)/.test(n.dataset.name||''));
  const scroll=document.createElement('div');scroll.className='route-result-scroll';scroll.setAttribute('role','region');scroll.setAttribute('aria-label','路线规划详情，可上下滚动');scroll.tabIndex=0;
  mountResultComposer();root.before(scroll);scroll.append(root);root.style.height=height+'px';root.style.marginTop='-88px';
  fixed.forEach(n=>{n.classList.add('route-result-fixed');n.style.background='#f7f9fc';if((n.dataset.name||'').startsWith('iOS')){n.style.top='778px';n.style.bottom='auto';}$('#screen').append(n)});
+ if(!fixed.some(n=>(n.dataset.name||'').startsWith('iOS'))){const bar=document.createElement('div');bar.className='homebar result-homebar';$('#screen').append(bar)}
  const request=[...root.querySelectorAll('p')].find(p=>p.textContent.trim().startsWith('目的地：'))||root.querySelector('[data-name="气泡"] p');if(request)request.textContent=state.request||(state.kind==='day'?'昆明一天8小时可以做什么':'目的地：'+state.destination.join('、')+'；游玩时长：'+state.duration+'；出行偏好：'+state.preference+'；开始智能规划');
- root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='扫码骑车'||p.textContent.trim()==='地铁二维码')makePickerAction(p.parentElement,p.textContent.trim(),()=>go(p.textContent.trim()==='扫码骑车'?'scooter':'home'));if(p.textContent.trim()==='去导航')makePickerAction(p,'去导航',()=>showRouteNavigation(page));});
+ root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='扫码骑车'||p.textContent.trim()==='地铁二维码')makePickerAction(p.parentElement,p.textContent.trim(),()=>go(p.textContent.trim()==='扫码骑车'?'scooter':'home'));if(p.textContent.trim()==='去导航')makePickerAction(p,'去导航',()=>openLookupDestination(({dayResult:'文林街',coffeeResult:'幸也咖啡',relaxResult:'幸也咖啡',nearbyResult:'盘龙寺',travelResult:'翠湖公园'})[page]));});
  const tabs=[...root.querySelectorAll('p')].filter(p=>/^DAY[123]$/.test(p.textContent.trim())).slice(0,3);
- if(tabs.length){const detail=root.querySelector('[data-node-id="9126:7839"]'),dayOne=detail.innerHTML;
+ if(tabs.length){const detail=root.querySelector('[data-name="行程规划"]'),dayOne=detail.innerHTML,bg=detail.parentElement.querySelector(':scope > [data-name="bg"]'),bgHeight=bg?.style.height||'';
  tabs.forEach((p,i)=>makePickerAction(p.parentElement,'查看第'+(i+1)+'天行程',()=>{
  tabs.forEach((t,j)=>{t.parentElement.classList.toggle('choice-on',i===j);t.parentElement.classList.toggle('choice-off',i!==j);t.parentElement.setAttribute('aria-pressed',String(i===j))});
- if(i===0)detail.innerHTML=dayOne;else{const template=document.createElement('div');template.innerHTML=screens[i===1?'9126-7944':'9126-8532'];const content=template.querySelector(i===1?'[data-node-id="9126:8000"]':'[data-node-id="9126:8654"]');detail.innerHTML=dayOne;const title=detail.querySelector('p').cloneNode(false);title.textContent=i===1?'DAY2 · 近郊探索':'DAY3 · 市区人文';if(content)detail.replaceChildren(title,...content.children);}
+ if(i===0){detail.innerHTML=dayOne;if(bg)bg.style.height=bgHeight;root.style.height=height+'px'}else{renderAlternateDay(detail,i,dayOne);const end=parseFloat(getComputedStyle(detail).top)+detail.offsetHeight;if(bg)bg.style.height=end+16-parseFloat(getComputedStyle(bg).top)+'px';root.style.height=end+48+'px'}
+
  detail.querySelectorAll('p').forEach(t=>{if(t.textContent.trim()==='扫码骑车'||t.textContent.trim()==='地铁二维码')makePickerAction(t.parentElement,t.textContent.trim(),()=>go(t.textContent.trim()==='扫码骑车'?'scooter':'home'))});detail.scrollIntoView({block:'start',behavior:reducedMotion()?'auto':'smooth'});
  }));}
 
@@ -100,4 +102,11 @@ function renderBikeService(page){
  const title=page==='bikeScan'?'扫码用车':page==='bikeOrders'?'我的订单':'计费说明';
  const body=page==='bikeScan'?'<div class="card"><h2>输入车辆编号</h2><input class="searchbox" id="bike-number" aria-label="车辆编号" placeholder="输入车身上的车辆编号" autocomplete="off"><p class="caption">演示用车流程，扫码和开锁需接入实际车辆服务。</p><button class="primary" id="bike-confirm" style="margin-top:20px">确认车辆</button></div>':page==='bikeOrders'?'<div class="empty"><b>暂无骑行订单</b><p>完成骑行后，可在这里查看订单。</p></div>':'<div class="card"><h2>骑行费用</h2><p>骑行前请查看车辆展示的起步价、计费时长与还车规则。</p><p class="caption">实际费用以所选车辆及运营服务页面公示为准。</p></div><div class="card"><h2>规范还车</h2><p>请在地图标记的停车区域内还车，并确认结束骑行。</p></div>';
  $('#screen').innerHTML=shell(title,body);wireNew();const confirm=$('#bike-confirm');if(confirm)confirm.onclick=()=>{const value=$('#bike-number').value.trim();toast(value?'已选择车辆 '+value+'，当前为演示体验':'请输入车辆编号')};
+}
+
+function renderAlternateDay(detail,day,dayOne){
+ const original=document.createElement('div');original.innerHTML=dayOne;const firstCard=original.querySelector('[data-name="地点卡片"]'),heading=original.querySelector('p').cloneNode(false);heading.textContent=day===1?'DAY2 · 近郊探索':'DAY3 · 市区人文';detail.replaceChildren(heading);
+ const makeCard=(title,description)=>{const card=firstCard.cloneNode(false),group=document.createElement('div');group.className=firstCard.querySelector('[data-name="标题+介绍"]').className;const sample=firstCard.querySelectorAll('[data-name="标题+介绍"] p'),a=sample[0].cloneNode(false),b=sample[1].cloneNode(false);a.textContent=title;b.textContent=description;b.style.lineHeight='22px';group.append(a,b);card.append(group);return card};
+ if(day===1){detail.append(makeCard('上午：南墙步行街','沿南墙步行街轻松漫步，按自己的节奏安排休息。'),makeCard('下午：西山森林公园','前往西山森林公园，预留游览与返程时间。'))}else{const tmp=document.createElement('div');tmp.innerHTML=screens['9137-17209'];const cards=[...tmp.querySelectorAll('[data-name="行程规划"] > [data-name="地点卡片"]')];detail.append(...cards.slice(0,2),makeCard('下午：黄公东街','沿黄公东街漫步，为市区人文行程收尾。'))}
+ const action=document.createElement('button');action.className='primary';action.textContent='查看当天路线';action.onclick=()=>openLookupDestination(day===1?'西山森林公园':'黄公东街');detail.append(action);
 }
