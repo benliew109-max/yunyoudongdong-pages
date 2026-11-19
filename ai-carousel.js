@@ -29,7 +29,7 @@ function wireAiCarousel(){
 function reducedMotion(){return matchMedia('(prefers-reduced-motion: reduce)').matches}
 function activateAiCard(key){
  if(key==='coffee'){state.kind='coffee';state.request='昆明不允许错过的咖啡店☕️';state.destination=['幸也咖啡','烈烈庆祝','沙丁鱼咖啡'];plan();return}if(key==='day'){state.request='昆明一天8小时可以做什么';state.kind='day';state.destination=['翠湖','昆明老街','滇池'];state.duration='8小时';state.preference='经典必玩';plan();return}
- activeAiCard=key;state.aiCardKey=key;go('recommendation');
+ activeAiCard=key;state.aiCardKey=key;state.conversationId=newConversationId();state.request='';go('recommendation');
 }
 function renderAiRecommendation(){
  const card=aiCardTypes.find(c=>c.key===(state.aiCardKey||activeAiCard))||aiCardTypes[1];

@@ -76,7 +76,7 @@ function wireLongResult(page){
 }
 function showRouteNavigation(page){
  const names={dayResult:['文林街','巡津街','昆明老街'],coffeeResult:['幸也咖啡','烈烈庆祝','沙丁鱼咖啡'],relaxResult:['幸也咖啡','橡榭咖啡','上瘾潘哒熊猫'],nearbyResult:['盘龙寺','古滇文化公园','返程市区'],travelResult:['翠湖','云南陆军讲武堂旧址','云南大学','海埂大坝']};
- const stops=names[page]||state.destination;$('#layer').innerHTML='';$('#screen').innerHTML=shell('路线导航','<div class="card"><img src="assets/38eb7.png" alt="昆明路线地图" style="width:100%;height:200px;object-fit:cover;border-radius:12px"></div><div class="card"><h2>选择目的地导航</h2>'+stops.map((name,i)=>'<a class="navigation-stop" href="https://uri.amap.com/search?keyword='+encodeURIComponent(name)+'&city=昆明&callnative=1" target="_blank" rel="noopener noreferrer"><span>'+String(i+1).padStart(2,'0')+' · '+escapeHTML(name)+'</span><span>去导航 ›</span></a>').join('')+'</div>');wireNew();
+ const stops=names[page]||state.destination;$('#layer').innerHTML='';$('#screen').innerHTML=shell('路线导航','<div class="card"><img src="assets/38eb7.png" alt="昆明路线地图" style="width:100%;height:200px;object-fit:cover;border-radius:12px"></div><div class="card"><h2>选择目的地导航</h2>'+stops.map((name,i)=>'<a class="navigation-stop" href="https://uri.amap.com/search?keyword='+encodeURIComponent(name)+'&city=昆明&callnative=1" target="_blank" rel="noopener noreferrer"><span>'+String(i+1).padStart(2,'0')+' · '+escapeHTML(name)+'</span><span>去导航 '+navigationArrow(true)+'</span></a>').join('')+'</div>');wireNew();
 }
 
 function mountResultComposer(){

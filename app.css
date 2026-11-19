@@ -46,3 +46,10 @@ body{overflow:hidden}#viewport{overflow:clip}.content{height:606px}
 .result-composer [data-node-id="9030:12117"]{border-color:transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(105deg,#00b2ff 0%,#c995ff 48%,#0bf2e5 100%) border-box}
 .result-recommendation-content{height:562px}
 .result-composer [role="button"]:focus-visible{outline:2px solid #00b1b8;outline-offset:3px;border-radius:24px}
+/* All generated page arrows reuse the destination header artwork. */
+.icon-btn{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+.nav-art{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:0 0 24px;vertical-align:middle}
+.nav-art img{display:block;max-width:none;flex:none}.nav-art-right{transform:rotate(180deg)}
+.history-date{font-size:13px;color:#8d9199;font-weight:500;margin:8px 0 12px}
+.conversation-row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;color:#1a1a1a}
+.conversation-copy{display:flex;flex-direction:column;gap:8px;min-width:0}.conversation-copy strong{font-size:14px;font-weight:600;line-height:21px}.conversation-copy small{font-size:12px;color:#8d9199;line-height:18px}
