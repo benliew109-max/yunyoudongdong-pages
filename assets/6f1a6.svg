@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon">
+<mask id="mask0_0_352" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
+<rect id="Rectangle 1312323550" width="16" height="16" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_0_352)">
+<path id="Union" d="M2.65039 12.5C2.65039 12.9694 3.03056 13.3496 3.5 13.3496H5.5V14.6504H3.5C2.31259 14.6504 1.34961 13.6874 1.34961 12.5V10.5H2.65039V12.5ZM14.6504 12.5C14.6504 13.6874 13.6874 14.6504 12.5 14.6504H10.5V13.3496H12.5C12.9694 13.3496 13.3496 12.9694 13.3496 12.5V10.5H14.6504V12.5ZM14.5 8.65039H1.5V7.34961H14.5V8.65039ZM5.5 2.65039H3.5C3.03056 2.65039 2.65039 3.03056 2.65039 3.5V5.5H1.34961V3.5C1.34961 2.31259 2.31259 1.34961 3.5 1.34961H5.5V2.65039ZM12.5 1.34961C13.6873 1.34965 14.6504 2.31257 14.6504 3.5V5.5H13.3496V3.5C13.3496 3.03062 12.9694 2.65043 12.5 2.65039H10.5V1.34961H12.5Z" fill="white"/>
+</g>
+</g>
+</svg>
