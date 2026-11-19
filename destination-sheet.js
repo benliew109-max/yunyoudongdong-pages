@@ -61,20 +61,43 @@ function wireLongResult(page){
  const root=$('#screen > div'),height=['dayResult','coffeeResult'].includes(page)?1716:2400;
  const fixed=[...root.children].filter(n=>/^(Navigation|Titlebar|iOS\/Bars\/Home)/.test(n.dataset.name||''));
  const scroll=document.createElement('div');scroll.className='route-result-scroll';scroll.setAttribute('role','region');scroll.setAttribute('aria-label','路线规划详情，可上下滚动');scroll.tabIndex=0;
- root.before(scroll);scroll.append(root);root.style.height=height+'px';root.style.marginTop='-88px';
+ mountResultComposer();root.before(scroll);scroll.append(root);root.style.height=height+'px';root.style.marginTop='-88px';
  fixed.forEach(n=>{n.classList.add('route-result-fixed');n.style.background='#f7f9fc';if((n.dataset.name||'').startsWith('iOS')){n.style.top='778px';n.style.bottom='auto';}$('#screen').append(n)});
  const request=[...root.querySelectorAll('p')].find(p=>p.textContent.trim().startsWith('目的地：'))||root.querySelector('[data-name="气泡"] p');if(request)request.textContent=state.request||(state.kind==='day'?'昆明一天8小时可以做什么':'目的地：'+state.destination.join('、')+'；游玩时长：'+state.duration+'；出行偏好：'+state.preference+'；开始智能规划');
- root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='扫码骑车'||p.textContent.trim()==='地铁二维码')makePickerAction(p.parentElement,p.textContent.trim(),()=>go('home'));if(p.textContent.trim()==='去导航')makePickerAction(p,'去导航',()=>showRouteNavigation(page));});
+ root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='扫码骑车'||p.textContent.trim()==='地铁二维码')makePickerAction(p.parentElement,p.textContent.trim(),()=>go(p.textContent.trim()==='扫码骑车'?'scooter':'home'));if(p.textContent.trim()==='去导航')makePickerAction(p,'去导航',()=>showRouteNavigation(page));});
  const tabs=[...root.querySelectorAll('p')].filter(p=>/^DAY[123]$/.test(p.textContent.trim())).slice(0,3);
  if(tabs.length){const detail=root.querySelector('[data-node-id="9126:7839"]'),dayOne=detail.innerHTML;
  tabs.forEach((p,i)=>makePickerAction(p.parentElement,'查看第'+(i+1)+'天行程',()=>{
  tabs.forEach((t,j)=>{t.parentElement.classList.toggle('choice-on',i===j);t.parentElement.classList.toggle('choice-off',i!==j);t.parentElement.setAttribute('aria-pressed',String(i===j))});
  if(i===0)detail.innerHTML=dayOne;else{const template=document.createElement('div');template.innerHTML=screens[i===1?'9126-7944':'9126-8532'];const content=template.querySelector(i===1?'[data-node-id="9126:8000"]':'[data-node-id="9126:8654"]');detail.innerHTML=dayOne;const title=detail.querySelector('p').cloneNode(false);title.textContent=i===1?'DAY2 · 近郊探索':'DAY3 · 市区人文';if(content)detail.replaceChildren(title,...content.children);}
- detail.querySelectorAll('p').forEach(t=>{if(t.textContent.trim()==='扫码骑车'||t.textContent.trim()==='地铁二维码')makePickerAction(t.parentElement,t.textContent.trim(),()=>go('home'))});detail.scrollIntoView({block:'start',behavior:reducedMotion()?'auto':'smooth'});
+ detail.querySelectorAll('p').forEach(t=>{if(t.textContent.trim()==='扫码骑车'||t.textContent.trim()==='地铁二维码')makePickerAction(t.parentElement,t.textContent.trim(),()=>go(t.textContent.trim()==='扫码骑车'?'scooter':'home'))});detail.scrollIntoView({block:'start',behavior:reducedMotion()?'auto':'smooth'});
  }));}
 
 }
 function showRouteNavigation(page){
  const names={dayResult:['文林街','巡津街','昆明老街'],coffeeResult:['幸也咖啡','烈烈庆祝','沙丁鱼咖啡'],relaxResult:['幸也咖啡','橡榭咖啡','上瘾潘哒熊猫'],nearbyResult:['盘龙寺','古滇文化公园','返程市区'],travelResult:['翠湖','云南陆军讲武堂旧址','云南大学','海埂大坝']};
  const stops=names[page]||state.destination;$('#layer').innerHTML='';$('#screen').innerHTML=shell('路线导航','<div class="card"><img src="assets/38eb7.png" alt="昆明路线地图" style="width:100%;height:200px;object-fit:cover;border-radius:12px"></div><div class="card"><h2>选择目的地导航</h2>'+stops.map((name,i)=>'<a class="navigation-stop" href="https://uri.amap.com/search?keyword='+encodeURIComponent(name)+'&city=昆明&callnative=1" target="_blank" rel="noopener noreferrer"><span>'+String(i+1).padStart(2,'0')+' · '+escapeHTML(name)+'</span><span>去导航 ›</span></a>').join('')+'</div>');wireNew();
+}
+
+function mountResultComposer(){
+ const template=document.createElement('div');template.innerHTML=screens[ids.destination];
+ const footer=document.createElement('section');footer.className='result-composer';footer.setAttribute('aria-label','继续对话和快捷功能');
+ for(const [id,top]of [['9047:21761',18],['9039:16458',60]]){const node=template.querySelector('[data-node-id="'+id+'"]');node.style.top=top+'px';footer.append(node)}
+ $('#screen').append(footer);
+ footer.querySelectorAll('[data-name="能力"] > p').forEach(p=>{const text=p.textContent.trim();makePickerAction(p.parentElement,text,()=>{if(text==='坐地铁')go('home');else toast(text==='问天气'?'演示模式：可继续规划行程':text==='今日签运'?'今日宜出发，去发现春城的小美好':'优惠券已放入你的演示卡包')})});
+ const content=$('#screen .new-page .content'),plan=$('#ai-card-plan');if(content){content.classList.add('result-recommendation-content');if(plan){content.append(plan);plan.style.marginTop='16px';$('#screen .new-page .footer')?.remove()}}
+ inputOverlay(58,714,251,36);hit('添加目的地',32,720,22,24,()=>{returnTo='destination';go('search')});
+}
+
+function wireTransportTabs(page){
+ const bike=page==='scooter';
+ for(const [label,x,target]of [['公交地铁',12,'home'],['电单车',187,'scooter']]){const button=hit(label,x,96,175,44,()=>{if(current!==target)go(target,false)});button.setAttribute('role','tab');button.setAttribute('aria-selected',String(page===target));}
+ hit('扫码骑车',258,48,101,36,()=>go('bikeScan'));
+ if(bike){hit('立即用车',24,350,327,44,()=>go('bikeScan'));hit('我的订单',85,402,100,38,()=>go('bikeOrders'));hit('计费说明',202,402,100,38,()=>go('bikePricing'));hit('查看附近电单车',24,154,327,184,()=>go('bikeScan'));}
+ else{bindText('刷新',()=>toast('乘车码已刷新'));['站点列表','站点时刻','地铁网图'].forEach(label=>bindText(label,()=>go('route')))}
+}
+function renderBikeService(page){
+ const title=page==='bikeScan'?'扫码用车':page==='bikeOrders'?'我的订单':'计费说明';
+ const body=page==='bikeScan'?'<div class="card"><h2>输入车辆编号</h2><input class="searchbox" id="bike-number" aria-label="车辆编号" placeholder="输入车身上的车辆编号" autocomplete="off"><p class="caption">演示用车流程，扫码和开锁需接入实际车辆服务。</p><button class="primary" id="bike-confirm" style="margin-top:20px">确认车辆</button></div>':page==='bikeOrders'?'<div class="empty"><b>暂无骑行订单</b><p>完成骑行后，可在这里查看订单。</p></div>':'<div class="card"><h2>骑行费用</h2><p>骑行前请查看车辆展示的起步价、计费时长与还车规则。</p><p class="caption">实际费用以所选车辆及运营服务页面公示为准。</p></div><div class="card"><h2>规范还车</h2><p>请在地图标记的停车区域内还车，并确认结束骑行。</p></div>';
+ $('#screen').innerHTML=shell(title,body);wireNew();const confirm=$('#bike-confirm');if(confirm)confirm.onclick=()=>{const value=$('#bike-number').value.trim();toast(value?'已选择车辆 '+value+'，当前为演示体验':'请输入车辆编号')};
 }

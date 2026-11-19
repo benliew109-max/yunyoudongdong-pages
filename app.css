@@ -40,3 +40,9 @@ body{overflow:hidden}#viewport{overflow:clip}.content{height:606px}
 .route-result-fixed{z-index:3}.result-save{top:56px;right:60px;z-index:10}
 .result-day-highlight{outline:2px solid #00d2d2;outline-offset:5px;border-radius:8px}
 .navigation-stop{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #edf1f5;font-size:13px}.navigation-stop span:last-child{color:#00b1b8}
+/* Keep the shared Figma quick actions and composer fixed on every result. */
+.route-result-scroll{height:562px}
+.result-composer{position:absolute;left:0;top:650px;width:375px;height:128px;background:#f7f9fc;z-index:4}
+.result-composer [data-node-id="9030:12117"]{border-color:transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(105deg,#00b2ff 0%,#c995ff 48%,#0bf2e5 100%) border-box}
+.result-recommendation-content{height:562px}
+.result-composer [role="button"]:focus-visible{outline:2px solid #00b1b8;outline-offset:3px;border-radius:24px}

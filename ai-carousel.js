@@ -35,5 +35,5 @@ function renderAiRecommendation(){
  const card=aiCardTypes.find(c=>c.key===(state.aiCardKey||activeAiCard))||aiCardTypes[1];
  const body='<div class="card"><h2>'+escapeHTML(card.title)+'</h2><p class="ai-recommendation-intro">'+escapeHTML(card.description)+'</p></div><div class="card"><h2>按你的节奏出发</h2>'+card.items.map(([title,text],i)=>'<div class="timeline"><span class="badge">'+String(i+1).padStart(2,'0')+'</span><div><strong>'+escapeHTML(title)+'</strong><p>'+escapeHTML(text)+'</p></div></div>').join('')+'</div>';
  $('#screen').innerHTML=shell(card.title,body,'<button class="primary" id="ai-card-plan">✦ 安排我的行程</button>');
- wireNew();$('#ai-card-plan').onclick=()=>{state.preference=card.preference;state.request=card.title;if(card.key==='pets')state.party='携宠出游';go('destination')};
+ wireNew();mountResultComposer();$('#ai-card-plan').onclick=()=>{state.preference=card.preference;state.request=card.title;if(card.key==='pets')state.party='携宠出游';go('destination')};
 }

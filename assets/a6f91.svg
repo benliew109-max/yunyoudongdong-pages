@@ -1,0 +1,34 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="351" height="60" viewBox="0 0 351 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#229;&#143;&#179;">
+<mask id="mask0_0_1457" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="351" height="60">
+<path id="bg-Gradient" d="M0 0H351V60H0V0Z" fill="url(#paint0_linear_0_1457)"/>
+</mask>
+<g mask="url(#mask0_0_1457)">
+<g id="bg-Gradient_2">
+<path d="M0 16C0 7.16344 7.16344 0 16 0H335C343.837 0 351 7.16344 351 16V60H0V16Z" fill="url(#paint1_linear_0_1457)"/>
+<mask id="stroke0_0_1457" fill="white">
+<path d="M0 16C0 7.16344 7.16344 0 16 0H335C343.837 0 351 7.16344 351 16V60H0V16Z"/>
+</mask>
+<path d="M351 60V16C351 7.16345 343.837 0 335 0H16C7.16344 0 0 7.16344 0 16V60H351Z" stroke-width="4" stroke="white" mask="url(#stroke0_0_1457)"/>
+</g>
+<g id="tab">
+<path id="bg-white &#233;&#128;&#137;&#228;&#184;&#173;" d="M349 14C349 7.37258 343.627 2 337 2H188C181.372 2 176 7.37258 176 14V34C176 40.6274 170.627 46 164 46H151.732H349V14Z" fill="white"/>
+<g id="tab_2">
+</g>
+<g id="tab_3">
+</g>
+</g>
+<path id="bg-white" d="M351 46H12C5.37259 46 0 51.3726 0 58V337C0 345.837 7.16345 353 16 353H335C343.837 353 351 345.837 351 337V46Z" fill="white"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_1457" x1="175.5" y1="1.97064e-08" x2="175.781" y2="60.001" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B8FFFF"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_1457" x1="175.5" y1="1.97064e-08" x2="175.781" y2="60.001" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B8FFFF"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>

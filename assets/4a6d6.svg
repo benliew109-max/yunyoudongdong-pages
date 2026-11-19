@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="19" height="23.5" viewBox="0 0 19 23.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon">
+<mask id="stroke0_0_1107" fill="white">
+<path d="M0 6C0 3.79086 1.79086 2 4 2H15C17.2091 2 19 3.79086 19 6V19.5C19 21.7091 17.2091 23.5 15 23.5H4C1.79086 23.5 0 21.7091 0 19.5V6Z"/>
+</mask>
+<path id="Vector" d="M4 23.5H15C17.2091 23.5 19 21.7091 19 19.5V6C19 3.79086 17.2091 2 15 2H4C1.79086 2 0 3.79086 0 6V19.5C0 21.7091 1.79086 23.5 4 23.5Z" stroke-width="4" stroke="black" mask="url(#stroke0_0_1107)"/>
+<path id="Rounded rectangle" d="M6 3C6 1.89543 6.89543 1 8 1H11C12.1046 1 13 1.89543 13 3C13 4.10457 12.1046 5 11 5H8C6.89543 5 6 4.10457 6 3Z" fill="white" stroke-width="2" stroke="black"/>
+<path id="Vector 4966" d="M7 11H12" stroke-width="2" stroke-linecap="round" stroke="black"/>
+<path id="Vector 4967" d="M7 15H12" stroke-width="2" stroke-linecap="round" stroke="black"/>
+</g>
+</svg>
