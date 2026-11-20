@@ -132,7 +132,7 @@ function wireInlineTransport(root,page){
  const tabs=[...root.querySelectorAll('p')].filter(p=>['推荐','最省时','费用低'].includes(p.textContent.trim()));
  const card=tabs[0]?.closest('[data-name="·"]');if(!card)return;
  const original=[...card.children].slice(1).map(n=>n.outerHTML).join('');
- const restoreActions=()=>{[...card.querySelectorAll('p')].forEach(p=>{if(p.textContent.trim()==='其他方式')makePickerAction(p.parentElement,'其他出行方式',()=>{lookupState.origin=state.origin;openLookupDestination(state.destination[0]||'巡津街')});if(p.textContent.trim()==='去导航'){p.onclick=null;p.removeAttribute('role');p.removeAttribute('aria-label');makePickerAction(p.parentElement,'导航到'+(state.destination[0]||'巡津街'),()=>{lookupState.origin=state.origin;lookupState.destination=state.destination[0]||'巡津街';saveLookup();lookupSelected=0;go('lookupDetail')})}})};
+ const restoreActions=()=>{[...card.querySelectorAll('p')].forEach(p=>{if(['其他方式','路线规划'].includes(p.textContent.trim()))makePickerAction(p.parentElement,'其他出行方式',()=>{lookupState.origin=state.origin;openLookupDestination(state.destination[0]||'巡津街')});if(p.textContent.trim()==='去导航'){p.onclick=null;p.removeAttribute('role');p.removeAttribute('aria-label');makePickerAction(p.parentElement,'导航到'+(state.destination[0]||'巡津街'),()=>{lookupState.origin=state.origin;lookupState.destination=state.destination[0]||'巡津街';saveLookup();lookupSelected=0;go('lookupDetail')})}})};
  tabs.forEach((tab,i)=>makePickerAction(tab.parentElement,'路线方案：'+tab.textContent.trim(),()=>{
  tabs.forEach((t,j)=>{t.parentElement.classList.toggle('inline-route-selected',j===i);t.parentElement.setAttribute('aria-pressed',String(i===j))});
  [...card.children].slice(1).forEach(n=>n.remove());card.insertAdjacentHTML('beforeend',original);
