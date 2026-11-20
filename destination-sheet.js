@@ -14,8 +14,8 @@ function wireDestinationSheet(){
  search.addEventListener('input',()=>renderDestinationRows(search.value));search.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();search.blur()}});
  const close=$('[data-node-id="I9124:6147;288:8942"]');makePickerAction(close,'关闭目的地选择',cancelDestinationSheet);
  mask.setAttribute('aria-hidden','true');mask.onclick=cancelDestinationSheet;
- const confirm=$('[data-node-id="9099:16855"]');makePickerAction(confirm,'确定选择',confirmDestinationSheet);
- if(returnTo==='origin'){$('[data-node-id="I9124:6147;288:8424"]').textContent='选择出发点';$('[data-node-id="9099:16690"]').textContent='选择一个地点作为出发点'}
+
+ if(returnTo==='origin')$('[data-node-id="I9124:6147;288:8424"]').textContent='选择出发点';
  root.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();cancelDestinationSheet()}if(e.key==='Tab'){const nodes=[...root.querySelectorAll('input, [tabindex="0"]')].filter(n=>!n.closest('[inert]'));const first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}});
  renderDestinationRows('');
 }
@@ -28,18 +28,16 @@ function renderDestinationRows(query){
  for(const item of recommended){const row=item.node.cloneNode(true);wirePickerRow(row,item.name);list.append(row)}
  for(const [name,description]of extra){const row=destinationTemplates[0].node.cloneNode(true);row.querySelectorAll('p')[0].textContent=name;row.querySelectorAll('p')[1].textContent=description;const picture=row.querySelector('[data-name="图片"]');picture.replaceChildren();picture.classList.add('destination-place-fallback');picture.textContent='⌖';wirePickerRow(row,name);list.append(row)}
  $('.destination-empty').hidden=!!(recommended.length+extra.length);list.scrollTop=key?0:oldScroll;
- const button=$('[data-node-id="9099:16855"]');button.setAttribute('aria-label',sheetDraft.length?'确定选择（'+sheetDraft.length+'个地点）':'确定选择');
+
 }
 function wirePickerRow(row,name){
- const selected=sheetDraft.includes(name),icon=row.querySelector('[data-name="选择"] img');icon.src=selected?'assets/28fb3.svg':'assets/a501f.svg';icon.alt='';row.dataset.place=name;row.setAttribute('role','checkbox');row.setAttribute('aria-label',name);row.setAttribute('aria-checked',String(selected));row.tabIndex=0;row.style.cursor='pointer';row.classList.add('destination-place-row');
- const image=row.querySelector('[data-name="图片"] img');if(image)image.alt=name;
- const toggle=()=>{const scroll=$('[data-node-id="9099:16757"]').scrollTop;if(returnTo==='origin')sheetDraft=[name];else sheetDraft=selected?sheetDraft.filter(p=>p!==name):[...sheetDraft,name];renderDestinationRows($('#place-search').value);$('[data-node-id="9099:16757"]').scrollTop=scroll;const replacement=[...document.querySelectorAll('[data-place]')].find(n=>n.dataset.place===name);replacement?.focus({preventScroll:true})};
- row.onclick=toggle;row.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}};
+ row.dataset.place=name;row.classList.add('destination-place-row');const image=row.querySelector('[data-name="图片"] img');if(image)image.alt=name;
+ makePickerAction(row,'选择'+name,()=>{sheetDraft=[name];confirmDestinationSheet()});
 }
 function cancelDestinationSheet(){sheetDraft=[];back()}
 function confirmDestinationSheet(){
  if(!sheetDraft.length){toast(returnTo==='origin'?'请选择一个出发点':'至少选择一个目的地');return}
- if(returnTo==='origin')state.origin=sheetDraft[0];else state.destination=[...sheetDraft];persist();
+ if(returnTo==='origin')state.origin=sheetDraft[0];else {state.destination=[sheetDraft[0]];state.request=''};persist();
  const next=returnTo==='edit'?'edit':'destination';if(historyStack[historyStack.length-1]===next)historyStack.pop();go(next,false);
 }
 
@@ -50,7 +48,7 @@ function wirePreferenceSheet(){
  root.classList.add('preference-sheet');root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','出行偏好');
  const options={preference:['美食打卡','微醺','City walk','好友聚餐','安静独处','购物逛街'],transport:['公共交通','步行','自驾','骑行'],party:['独自','朋友','情侣','一家人'],duration:['0.5天','1天','3天','自定义']};
  const groups=[...panel.children].filter(n=>n.dataset.name!=='mask'&&n.querySelector('button'));
- groups.forEach((group,i)=>{const key=Object.keys(options)[i];group.querySelectorAll('button').forEach((button,j)=>{let value=options[key][j];if(key==='duration'&&j===3&&!options.duration.includes(preferenceDraft.duration)){value=preferenceDraft.duration;button.querySelector('p').textContent=value;}const selected=key==='party'?({独自出发:'独自',朋友同行:'朋友',情侣出游:'情侣',亲子出游:'一家人'}[preferenceDraft.party]||preferenceDraft.party)===value:preferenceDraft[key]===value;button.classList.add(selected?'choice-on':'choice-off');button.setAttribute('aria-pressed',String(selected));button.onclick=()=>{if(key==='duration'&&j===3){returnTo='preferences';go('duration');return}preferenceDraft[key]=value;const draft=preferenceDraft;go('preferences',false);preferenceDraft=draft;};});});
+ groups.forEach((group,i)=>{const key=Object.keys(options)[i];group.querySelectorAll('button').forEach((button,j)=>{let value=options[key][j];if(key==='duration'&&j===3&&preferenceDraft.duration&&!options.duration.includes(preferenceDraft.duration)){value=preferenceDraft.duration;button.querySelector('p').textContent=value;}const selected=key==='party'?({独自出发:'独自',朋友同行:'朋友',情侣出游:'情侣',亲子出游:'一家人'}[preferenceDraft.party]||preferenceDraft.party)===value:preferenceDraft[key]===value;button.classList.add(selected?'choice-on':'choice-off');button.setAttribute('aria-pressed',String(selected));button.onclick=()=>{if(key==='duration'&&j===3&&!selected){returnTo='preferences';go('duration');return}preferenceDraft[key]=selected?'':value;const draft=preferenceDraft;go('preferences',false);preferenceDraft=draft;};});});
  const close=panel.querySelector('[data-name="右侧-图标"]');const cancel=()=>{preferenceDraft=null;back()};makePickerAction(close,'关闭出行偏好',cancel);panel.querySelector('[data-name="mask"]').onclick=cancel;
  const confirm=$('[data-node-id="9124:6543"]');makePickerAction(confirm,'确定出行偏好',()=>{Object.assign(state,{preference:preferenceDraft.preference,transport:preferenceDraft.transport,party:preferenceDraft.party,duration:preferenceDraft.duration});persist();back()});
  root.onkeydown=e=>{if(e.key==='Escape')cancel()};
@@ -64,8 +62,9 @@ function wireLongResult(page){
  mountResultComposer();root.before(scroll);scroll.append(root);root.style.height=height+'px';root.style.marginTop='-88px';
  fixed.forEach(n=>{n.classList.add('route-result-fixed');n.style.background='#f7f9fc';if((n.dataset.name||'').startsWith('iOS')){n.style.top='778px';n.style.bottom='auto';}$('#screen').append(n)});
  if(!fixed.some(n=>(n.dataset.name||'').startsWith('iOS'))){const bar=document.createElement('div');bar.className='homebar result-homebar';$('#screen').append(bar)}
- const request=[...root.querySelectorAll('p')].find(p=>p.textContent.trim().startsWith('目的地：'))||root.querySelector('[data-name="气泡"] p');if(request)request.textContent=state.request||(state.kind==='day'?'昆明一天8小时可以做什么':'目的地：'+state.destination.join('、')+'；游玩时长：'+state.duration+'；出行偏好：'+state.preference+'；开始智能规划');
- root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='扫码骑车'||p.textContent.trim()==='地铁二维码')makePickerAction(p.parentElement,p.textContent.trim(),()=>go(p.textContent.trim()==='扫码骑车'?'scooter':'home'));if(p.textContent.trim()==='去导航')makePickerAction(p,'去导航',()=>openLookupDestination(({dayResult:'文林街',coffeeResult:'幸也咖啡',relaxResult:'幸也咖啡',nearbyResult:'盘龙寺',travelResult:'翠湖公园',pointResult:'文林街',stationResult:'昆明火车站'})[page]));});
+ const request=[...root.querySelectorAll('p')].find(p=>p.textContent.trim().startsWith('目的地：'))||root.querySelector('[data-name="气泡"] p');if(request)request.textContent=state.request||(state.kind==='day'?'昆明一天8小时可以做什么':planningRequest());
+ root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='扫码骑车'||p.textContent.trim()==='地铁二维码')makePickerAction(p.parentElement,p.textContent.trim(),()=>go(p.textContent.trim()==='扫码骑车'?'scooter':'home'));if(p.textContent.trim()==='去导航')makePickerAction(p,'去导航',()=>openNavigation(({dayResult:'文林街',coffeeResult:'幸也咖啡',relaxResult:'幸也咖啡',nearbyResult:'盘龙寺',travelResult:'翠湖公园',pointResult:'文林街',stationResult:'昆明火车站'})[page]));});
+ if(page==='pointResult'){const title=[...root.querySelectorAll('p')].find(p=>p.textContent.trim()==='终点：文林街');if(title){title.textContent='终点：'+(state.destination[0]||'文林街');if(state.destination[0]&&state.destination[0]!=='文林街')while(title.nextElementSibling)title.nextElementSibling.remove();}}
  wireInlineTransport(root,page);
  if(['pointResult','stationResult','relaxResult'].includes(page)){const detail=root.querySelector('[data-name="行程规划"]');const bg=root.querySelector('[data-name="路线推荐"] > [data-name="bg"]');if(detail&&bg){const end=detail.getBoundingClientRect().bottom-root.getBoundingClientRect().top;const scale=root.getBoundingClientRect().width/375;const top=parseFloat(getComputedStyle(detail).top)-16;bg.style.top=top+'px';bg.style.transform='translateX(-50%)';bg.style.height=(end/scale+16-top)+'px';root.style.height=Math.max(812,end/scale+48)+'px';}}
  const tabs=[...root.querySelectorAll('p')].filter(p=>/^DAY[123]$/.test(p.textContent.trim())).slice(0,3);
@@ -89,6 +88,7 @@ function mountResultComposer(){
  for(const [id,top]of [['9047:21761',18],['9039:16458',60]]){const node=template.querySelector('[data-node-id="'+id+'"]');node.style.top=top+'px';footer.append(node)}
  $('#screen').append(footer);
  footer.querySelectorAll('[data-name="能力"] > p').forEach(p=>{const text=p.textContent.trim();makePickerAction(p.parentElement,text,()=>{if(text==='坐地铁')go('home');else toast(text==='问天气'?'演示模式：可继续规划行程':text==='今日签运'?'今日宜出发，去发现春城的小美好':'优惠券已放入你的演示卡包')})});
+ wireQuickActions(footer);
  const content=$('#screen .new-page .content'),plan=$('#ai-card-plan');if(content){content.classList.add('result-recommendation-content');if(plan){content.append(plan);plan.style.marginTop='16px';$('#screen .new-page .footer')?.remove()}}
  inputOverlay(58,714,251,36);hit('添加目的地',32,720,22,24,()=>{returnTo='destination';go('search')});
 }
@@ -132,10 +132,15 @@ function wireInlineTransport(root,page){
  const tabs=[...root.querySelectorAll('p')].filter(p=>['推荐','最省时','费用低'].includes(p.textContent.trim()));
  const card=tabs[0]?.closest('[data-name="·"]');if(!card)return;
  const original=[...card.children].slice(1).map(n=>n.outerHTML).join('');
- const restoreActions=()=>{[...card.querySelectorAll('p')].forEach(p=>{if(p.textContent.trim()==='其他方式')makePickerAction(p.parentElement,'其他出行方式',()=>{lookupState.origin=state.origin;openLookupDestination(state.destination[0]||'巡津街')});if(p.textContent.trim()==='去导航'){p.onclick=null;p.removeAttribute('role');p.removeAttribute('aria-label');makePickerAction(p.parentElement,'导航到'+(state.destination[0]||'巡津街'),()=>{lookupState.origin=state.origin;lookupState.destination=state.destination[0]||'巡津街';saveLookup();go('lookupDetail')})}})};
+ const restoreActions=()=>{[...card.querySelectorAll('p')].forEach(p=>{if(p.textContent.trim()==='其他方式')makePickerAction(p.parentElement,'其他出行方式',()=>{lookupState.origin=state.origin;openLookupDestination(state.destination[0]||'巡津街')});if(p.textContent.trim()==='去导航'){p.onclick=null;p.removeAttribute('role');p.removeAttribute('aria-label');makePickerAction(p.parentElement,'导航到'+(state.destination[0]||'巡津街'),()=>{lookupState.origin=state.origin;lookupState.destination=state.destination[0]||'巡津街';saveLookup();lookupSelected=0;go('lookupDetail')})}})};
  tabs.forEach((tab,i)=>makePickerAction(tab.parentElement,'路线方案：'+tab.textContent.trim(),()=>{
  tabs.forEach((t,j)=>{t.parentElement.classList.toggle('inline-route-selected',j===i);t.parentElement.setAttribute('aria-pressed',String(i===j))});
  [...card.children].slice(1).forEach(n=>n.remove());card.insertAdjacentHTML('beforeend',original);
- if(i){const holder=document.createElement('div');holder.innerHTML=screens[ids.pureResults];const cards=holder.querySelector('[data-node-id="9137:15511"]');const candidate=cards?.children[i];if(candidate){const buttons=card.lastElementChild;[...card.children].slice(1,-1).forEach(n=>n.remove());const choice=candidate.cloneNode(true);choice.style.cssText='position:relative;width:100%;height:auto';card.insertBefore(choice,buttons);}}
+ if(i){const holder=document.createElement('div');holder.innerHTML=screens[ids.pureResults];const cards=holder.querySelector('[data-node-id="9153:29356"]');const candidate=cards?.children[i];if(candidate){const buttons=card.lastElementChild;[...card.children].slice(1,-1).forEach(n=>n.remove());const choice=candidate.cloneNode(true);choice.style.cssText='position:relative;width:100%;height:auto';card.insertBefore(choice,buttons);}}
  restoreActions();}));restoreActions();
+}
+
+function wireQuickActions(scope){
+ const actions={'问天气':()=>toast('演示模式：可继续规划行程'),'坐地铁':()=>go('home'),'行程规划':()=>{lookupState.origin=state.origin;const place=state.destination[0];if(place)openLookupDestination(place);else go('pureSearch')},'今日签运':()=>toast('今日宜出发，去发现春城的小美好'),'领取优惠券':()=>toast('优惠券已放入你的演示卡包')};
+ scope.querySelectorAll('[data-node-id="9047:21761"]').forEach(row=>{row.classList.add('quick-actions-scroll');row.querySelectorAll('p').forEach(p=>{const action=actions[p.textContent.trim()];if(action)makePickerAction(p.parentElement,p.textContent.trim(),action)})});
 }
