@@ -85,3 +85,12 @@ body{overflow:hidden}#viewport{overflow:clip}.content{height:606px}
 .assistant-planning-prompt{left:16px!important;right:auto!important;max-width:343px;width:fit-content;border-radius:16px 16px 16px 0!important;padding:12px 16px!important}.assistant-planning-prompt p{font-size:14px!important;line-height:22px!important;font-weight:400!important;white-space:normal!important;min-width:0;max-width:311px;flex-shrink:1;overflow-wrap:anywhere}
 .thinking-star{animation:spin 1.8s linear infinite;transform-origin:center}
 @media(prefers-reduced-motion:reduce){.thinking-star{animation:none}}
+
+/* Restore the Figma rich-text list indent inside the station recommendation card. */
+.route-result-scroll [data-node-id="9150:26298"] ul{--list-marker-font-size:14px}
+
+/* All message bubbles share the reference's 240px text + 24px padding cap. */
+#screen [data-name="气泡"]{width:fit-content;max-width:264px}
+#screen [data-name="气泡"] p{width:auto;max-width:240px;min-width:0;flex-shrink:1;white-space:normal;overflow-wrap:anywhere}
+#screen[data-page="thinking"] [data-name="气泡"],#screen[data-page="dayThinking"] [data-name="气泡"],#screen .route-result-scroll [data-name="气泡"]{max-width:264px}
+#screen[data-page="thinking"] [data-name="气泡"] p,#screen[data-page="dayThinking"] [data-name="气泡"] p,#screen .route-result-scroll [data-name="气泡"] p{max-width:240px}
