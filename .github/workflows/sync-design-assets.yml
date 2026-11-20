@@ -1,0 +1,34 @@
+name: Sync November 20 design assets
+on:
+  push:
+    branches: [codex/figma-nov20]
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch original Figma assets and publish static demo
+        run: |
+          python3 - <<'PY'
+          import json, subprocess, hashlib, pathlib, concurrent.futures
+          assets=json.loads('[{"name": "5fbab.png", "url": "https://www.figma.com/api/mcp/asset/a0036f33-3e29-4c3e-b3c5-68e9bc6cb579/5fbab.png", "sha256": "ac2e87e6831b89da9faa8bad1f72c41fefc0f16b6e2f562eb8a1b29b7074acfc"}, {"name": "21b4a.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/21b4a.png", "sha256": "bb616ce9f9eb00fc9f015be79eb4a855f548e4d5a2a199c69322184b34ea84d4"}, {"name": "3a337.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/3a337.png", "sha256": "81fe3ae8b9bf7af9b31a6d89e0d443c52b2a7fa727579d18f52b25738f44e861"}, {"name": "0ca4a.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/0ca4a.png", "sha256": "16734648e9b3826b7c61212de99d4a2bfcd5a952bcb190ed8d65732b01a1a114"}, {"name": "e0435.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/e0435.png", "sha256": "f3e142a41efc027e4c4609705844503a5b7eba9408b134a8e0c9b13875b17886"}, {"name": "75dfd.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/75dfd.png", "sha256": "fbe71be69f3b7bcab23b6d27e28812969b639a8bf8db3586115698ab40b9168e"}, {"name": "d4f3c.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/d4f3c.png", "sha256": "07de253da0be06436b5d41d7046b081ea981ad53ca43dacf587e9e425f2f4107"}, {"name": "e45b6.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/e45b6.png", "sha256": "93e795118d052875aae57e77be337a2e661ba78c8704ff128735b0f114b7e856"}, {"name": "95e07.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/95e07.png", "sha256": "447aedf16a77e52161b9e3996686003ca31431dba104c96ff132bcae00edd84c"}, {"name": "7b3c3.png", "url": "https://www.figma.com/api/mcp/asset/f80651e3-4799-4988-b9af-14f95dbe8996/7b3c3.png", "sha256": "08d35a111941f2cb7c55f4bf2fec8f8e61274402bc6de4de181bdcd0c8331e22"}, {"name": "62b51.svg", "url": "https://www.figma.com/api/mcp/asset/d4cb472f-3330-4779-bdd9-669280649dfa/62b51.svg", "sha256": "87f8ef13cd985aa11da51a94193a1ca80e4bb212ac278b00e7883442f109cff0"}, {"name": "c232e.svg", "url": "https://www.figma.com/api/mcp/asset/d4cb472f-3330-4779-bdd9-669280649dfa/c232e.svg", "sha256": "eba35ab301a662542c9a24dcae94e8049651565b0a2e412c7b654e143e74ba82"}, {"name": "69f8c.png", "url": "https://www.figma.com/api/mcp/asset/3d03d07c-d9c6-4284-8e1b-50071b0fdbd2/69f8c.png", "sha256": "ed8d2ed20cbb51e50128959e96febbbbeeb807bec1020f375bc705aeb49b6259"}, {"name": "d89d3.png", "url": "https://www.figma.com/api/mcp/asset/3d03d07c-d9c6-4284-8e1b-50071b0fdbd2/d89d3.png", "sha256": "af2375f86e3145a90862974d1988e23b7f49fcf0d4eafd45d0d0f9cb16f020a9"}, {"name": "acfe3.png", "url": "https://www.figma.com/api/mcp/asset/3d03d07c-d9c6-4284-8e1b-50071b0fdbd2/acfe3.png", "sha256": "adf2f49f7959bee19a49f2206c9919dc927f3ebb739a838876fbda037f8848ab"}, {"name": "04cf8.png", "url": "https://www.figma.com/api/mcp/asset/3d03d07c-d9c6-4284-8e1b-50071b0fdbd2/04cf8.png", "sha256": "0d1e019beaf726997cb5a017ff88fe7161d664fc0f2f9fbcc92d7ac79ec13e1a"}, {"name": "4e3e8.png", "url": "https://www.figma.com/api/mcp/asset/3d03d07c-d9c6-4284-8e1b-50071b0fdbd2/4e3e8.png", "sha256": "edd55ee1aa1c983ac370074024c533c4c7a3d23633e800893082e83d47df067e"}, {"name": "59f44.png", "url": "https://www.figma.com/api/mcp/asset/3d03d07c-d9c6-4284-8e1b-50071b0fdbd2/59f44.png", "sha256": "913da1c73cc804ade2e968aec6adec7f0fe597709724b16e44bf79ce8c4ab639"}, {"name": "68747.png", "url": "https://www.figma.com/api/mcp/asset/b5423628-9b6b-4f57-887f-b9fb1571e563/68747.png", "sha256": "9dff4f8f7b96690701815ba31011a550e4684065253b0a668f9c68ae3b0022c7"}, {"name": "451b7.svg", "url": "https://www.figma.com/api/mcp/asset/b5423628-9b6b-4f57-887f-b9fb1571e563/451b7.svg", "sha256": "cb4eb34da34c3c9ab174976d7b482a05b5c1962ce20521874ad4d3c47aa523c3"}, {"name": "021f5.svg", "url": "https://www.figma.com/api/mcp/asset/b5423628-9b6b-4f57-887f-b9fb1571e563/021f5.svg", "sha256": "cdf47f1554f8e49f44fba4f5aae17a0e93f2b792bf60e8d79037c732b5b8ce07"}, {"name": "8c3a7.svg", "url": "https://www.figma.com/api/mcp/asset/b5423628-9b6b-4f57-887f-b9fb1571e563/8c3a7.svg", "sha256": "9d45ecd75fb61cbb4e6a3c229d0141c833965de614b8c405df0c448dca32eb32"}]')
+          def download(item):
+              path=pathlib.Path('assets')/item['name']
+              subprocess.run(['curl','-fL','--retry','3','--silent','--show-error',item['url'],'-o',str(path)],check=True)
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256'], item['name']
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+              list(pool.map(download,assets))
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "4b466b30b62e5d7f94cd09a9055be6eacd9a7ad0"
+          git reset --soft origin/main
+          rm .github/workflows/sync-design-assets.yml
+          git add -A
+          git commit -m "Update November 20 Figma screens, point-to-point routes and conversation modal"
+          git push origin HEAD:main

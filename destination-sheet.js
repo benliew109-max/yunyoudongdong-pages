@@ -58,14 +58,16 @@ function wirePreferenceSheet(){
 
 // Full-height Figma result art stays intact inside a scrollable viewport.
 function wireLongResult(page){
- const root=$('#screen > div'),height=['dayResult','coffeeResult'].includes(page)?1800:2400;
+ const root=$('#screen > div'),height=['dayResult','coffeeResult'].includes(page)?1800:['pointResult','stationResult','relaxResult'].includes(page)?2401:2400;
  const fixed=[...root.children].filter(n=>/^(Navigation|Titlebar|iOS\/Bars\/Home)/.test(n.dataset.name||''));
  const scroll=document.createElement('div');scroll.className='route-result-scroll';scroll.setAttribute('role','region');scroll.setAttribute('aria-label','路线规划详情，可上下滚动');scroll.tabIndex=0;
  mountResultComposer();root.before(scroll);scroll.append(root);root.style.height=height+'px';root.style.marginTop='-88px';
  fixed.forEach(n=>{n.classList.add('route-result-fixed');n.style.background='#f7f9fc';if((n.dataset.name||'').startsWith('iOS')){n.style.top='778px';n.style.bottom='auto';}$('#screen').append(n)});
  if(!fixed.some(n=>(n.dataset.name||'').startsWith('iOS'))){const bar=document.createElement('div');bar.className='homebar result-homebar';$('#screen').append(bar)}
  const request=[...root.querySelectorAll('p')].find(p=>p.textContent.trim().startsWith('目的地：'))||root.querySelector('[data-name="气泡"] p');if(request)request.textContent=state.request||(state.kind==='day'?'昆明一天8小时可以做什么':'目的地：'+state.destination.join('、')+'；游玩时长：'+state.duration+'；出行偏好：'+state.preference+'；开始智能规划');
- root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='扫码骑车'||p.textContent.trim()==='地铁二维码')makePickerAction(p.parentElement,p.textContent.trim(),()=>go(p.textContent.trim()==='扫码骑车'?'scooter':'home'));if(p.textContent.trim()==='去导航')makePickerAction(p,'去导航',()=>openLookupDestination(({dayResult:'文林街',coffeeResult:'幸也咖啡',relaxResult:'幸也咖啡',nearbyResult:'盘龙寺',travelResult:'翠湖公园'})[page]));});
+ root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='扫码骑车'||p.textContent.trim()==='地铁二维码')makePickerAction(p.parentElement,p.textContent.trim(),()=>go(p.textContent.trim()==='扫码骑车'?'scooter':'home'));if(p.textContent.trim()==='去导航')makePickerAction(p,'去导航',()=>openLookupDestination(({dayResult:'文林街',coffeeResult:'幸也咖啡',relaxResult:'幸也咖啡',nearbyResult:'盘龙寺',travelResult:'翠湖公园',pointResult:'文林街',stationResult:'昆明火车站'})[page]));});
+ wireInlineTransport(root,page);
+ if(['pointResult','stationResult','relaxResult'].includes(page)){const detail=root.querySelector('[data-name="行程规划"]');const bg=root.querySelector('[data-name="路线推荐"] > [data-name="bg"]');if(detail&&bg){const end=detail.getBoundingClientRect().bottom-root.getBoundingClientRect().top;const scale=root.getBoundingClientRect().width/375;const top=parseFloat(getComputedStyle(detail).top)-16;bg.style.top=top+'px';bg.style.transform='translateX(-50%)';bg.style.height=(end/scale+16-top)+'px';root.style.height=Math.max(812,end/scale+48)+'px';}}
  const tabs=[...root.querySelectorAll('p')].filter(p=>/^DAY[123]$/.test(p.textContent.trim())).slice(0,3);
  if(tabs.length){const detail=root.querySelector('[data-name="行程规划"]'),dayOne=detail.innerHTML,bg=detail.parentElement.querySelector(':scope > [data-name="bg"]'),bgHeight=bg?.style.height||'';
  tabs.forEach((p,i)=>makePickerAction(p.parentElement,'查看第'+(i+1)+'天行程',()=>{
@@ -109,4 +111,31 @@ function renderAlternateDay(detail,day,dayOne){
  const makeCard=(title,description)=>{const card=firstCard.cloneNode(false),group=document.createElement('div');group.className=firstCard.querySelector('[data-name="标题+介绍"]').className;const sample=firstCard.querySelectorAll('[data-name="标题+介绍"] p'),a=sample[0].cloneNode(false),b=sample[1].cloneNode(false);a.textContent=title;b.textContent=description;b.style.lineHeight='22px';group.append(a,b);card.append(group);return card};
  if(day===1){detail.append(makeCard('上午：南墙步行街','沿南墙步行街轻松漫步，按自己的节奏安排休息。'),makeCard('下午：西山森林公园','前往西山森林公园，预留游览与返程时间。'))}else{const tmp=document.createElement('div');tmp.innerHTML=screens['9137-17209'];const cards=[...tmp.querySelectorAll('[data-name="行程规划"] > [data-name="地点卡片"]')];detail.append(...cards.slice(0,2),makeCard('下午：黄公东街','沿黄公东街漫步，为市区人文行程收尾。'))}
  const action=document.createElement('button');action.className='primary';action.textContent='查看当天路线';action.onclick=()=>openLookupDestination(day===1?'西山森林公园':'黄公东街');detail.append(action);
+}
+
+function wireHistoryModal(){
+ const root=$('#screen > div');const mask=root.querySelector('[data-node-id="9137:17594"]');
+ const originals=[...root.children];const cutoff=originals.indexOf(mask);
+ const underlay=document.createElement('div');underlay.className='history-underlay';underlay.inert=true;underlay.setAttribute('aria-hidden','true');underlay.innerHTML=historyUnderlay||screens[ids.ai];
+ originals.slice(0,cutoff).forEach(n=>n.remove());root.prepend(underlay);
+ const avatar=root.querySelector('[data-node-id="9137:17746"]');const avatarHTML=avatar?.outerHTML||'';
+ ['9137:17695','9137:17746','9137:17700','9137:17702'].forEach(id=>root.querySelector('[data-node-id="'+id+'"]')?.remove());
+ const list=document.createElement('div');list.className='history-modal-list';
+ if(!conversationHistory.length)list.innerHTML='<div class="empty"><b>还没有历史对话</b><p>生成行程或提问后，可在这里继续查看。</p></div>';
+ conversationHistory.forEach(entry=>{const button=document.createElement('button');button.className='history-modal-row';const date=new Date(entry.createdAt);const stamp=date.getFullYear()+'.'+String(date.getMonth()+1).padStart(2,'0')+'.'+String(date.getDate()).padStart(2,'0')+' '+date.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});button.innerHTML='<span class="history-avatar">'+avatarHTML+'</span><span><strong>'+escapeHTML(entry.title)+'</strong><small>'+stamp+'</small></span>';button.onclick=()=>{Object.assign(state,entry.snapshot);go(entry.page)};list.append(button)});
+ root.append(list);mask.onclick=back;makePickerAction(root.querySelector('[data-node-id="I9137:17598;288:8942"]'),'关闭历史对话',back);
+ makePickerAction(root.querySelector('[data-node-id="9137:17672"]'),'新对话',()=>{state.request='';state.destination=[];state.conversationId=newConversationId();go('destination')});
+}
+function wireInlineTransport(root,page){
+ if(!['pointResult','stationResult','relaxResult'].includes(page))return;
+ root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='起点：从 昆明市西山区万达南塔 出发'){p.textContent='起点：从 '+state.origin+' 出发';p.style.lineHeight='24px';p.style.fontSize='16px';}});
+ const tabs=[...root.querySelectorAll('p')].filter(p=>['推荐','最省时','费用低'].includes(p.textContent.trim()));
+ const card=tabs[0]?.closest('[data-name="·"]');if(!card)return;
+ const original=[...card.children].slice(1).map(n=>n.outerHTML).join('');
+ const restoreActions=()=>{[...card.querySelectorAll('p')].forEach(p=>{if(p.textContent.trim()==='其他方式')makePickerAction(p.parentElement,'其他出行方式',()=>{lookupState.origin=state.origin;openLookupDestination(state.destination[0]||'巡津街')});if(p.textContent.trim()==='去导航'){p.onclick=null;p.removeAttribute('role');p.removeAttribute('aria-label');makePickerAction(p.parentElement,'导航到'+(state.destination[0]||'巡津街'),()=>{lookupState.origin=state.origin;lookupState.destination=state.destination[0]||'巡津街';saveLookup();go('lookupDetail')})}})};
+ tabs.forEach((tab,i)=>makePickerAction(tab.parentElement,'路线方案：'+tab.textContent.trim(),()=>{
+ tabs.forEach((t,j)=>{t.parentElement.classList.toggle('inline-route-selected',j===i);t.parentElement.setAttribute('aria-pressed',String(i===j))});
+ [...card.children].slice(1).forEach(n=>n.remove());card.insertAdjacentHTML('beforeend',original);
+ if(i){const holder=document.createElement('div');holder.innerHTML=screens[ids.pureResults];const cards=holder.querySelector('[data-node-id="9137:15511"]');const candidate=cards?.children[i];if(candidate){const buttons=card.lastElementChild;[...card.children].slice(1,-1).forEach(n=>n.remove());const choice=candidate.cloneNode(true);choice.style.cssText='position:relative;width:100%;height:auto';card.insertBefore(choice,buttons);}}
+ restoreActions();}));restoreActions();
 }
