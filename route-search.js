@@ -47,7 +47,7 @@ function wireNavigationDetail(){
  makePickerAction(root.querySelector('[data-node-id="9153:28661"]'),'返回路线规划',()=>historyStack.length?back():go('pureResults',false));
  makePickerAction(root.querySelector('[data-node-id="9153:28728"]').parentElement,'查看乘车码',()=>go('home'));
  makePickerAction(root.querySelector('[data-node-id="9153:28841"]'),'定位到我的位置',()=>toast('已定位到当前演示位置'));
- const stop=root.querySelector('[data-node-id="9153:28748"]').parentElement;makePickerAction(stop,'展开途经站点',()=>{const expanded=stop.getAttribute('aria-expanded')==='true';stop.setAttribute('aria-expanded',String(!expanded));panel.querySelector('.navigation-stops')?.remove();if(!expanded){const list=document.createElement('p');list.className='navigation-stops';list.textContent='昆时 → 环城南路 → 宋家庄（B1南口）';stop.after(list)}});
+ const stop=root.querySelector('[data-node-id="9153:28748"]').parentElement;makePickerAction(stop,'查看途经站点',()=>toast('途经站点：昆时 → 环城南路 → 宋家庄'));
  const summary=root.querySelector('[data-node-id="9153:28780"]');summary.setAttribute('aria-label','交通方案，可左右滑动');summary.tabIndex=0;
  const dots=root.querySelector('[data-node-id="9153:28811"]');
  const choose=index=>{lookupSelected=(index+3)%3;root.querySelector('[data-node-id="9153:28787"]').textContent=lookupSelected===0?'54':lookupSelected===1?'51':'54';summary.setAttribute('aria-label','交通方案'+(lookupSelected+1)+'，可左右滑动');if(dots)[...dots.children].forEach((dot,i)=>{dot.style.backgroundImage='none';dot.style.backgroundColor=i===lookupSelected?'#00d2d2':'#e9ecf0';dot.style.width=i===lookupSelected?'10px':'6px';});};
