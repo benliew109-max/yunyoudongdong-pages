@@ -1,7 +1,7 @@
 # 云游咚咚 Demo
 
-访问：https://benliew109-max.github.io/yunyoudongdong-pages/
+已同步 2026-11-20 Figma：行程规划搜索入口、点对点交通方案与目的地推荐、历史对话弹层和最新视觉规范。
 
-已同步 2026-11-19 Figma UI：目的地、出行偏好、周边游玩、分日行程和咖啡路线。
+公开访问：https://benliew109-max.github.io/yunyoudongdong-pages/
 
-仅包含静态运行文件；完整源码保留在私有仓库。
+路线、时长、费用和推荐内容为设计演示数据。源码保存在私有仓库。
