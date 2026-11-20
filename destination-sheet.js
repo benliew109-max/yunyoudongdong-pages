@@ -38,7 +38,7 @@ function cancelDestinationSheet(){sheetDraft=[];back()}
 function confirmDestinationSheet(){
  if(!sheetDraft.length){toast(returnTo==='origin'?'请选择一个出发点':'至少选择一个目的地');return}
  if(returnTo==='origin')state.origin=sheetDraft[0];else {state.destination=[sheetDraft[0]];state.request=''};persist();
- const next=returnTo==='edit'?'edit':'destination';if(historyStack[historyStack.length-1]===next)historyStack.pop();go(next,false);
+ const next=planningContext?.page||(returnTo==='edit'?'edit':'destination');if(historyStack[historyStack.length-1]===next)historyStack.pop();go(next,false);
 }
 
 // Figma 9124:6167 — preference choices use a draft until confirmed.
@@ -142,6 +142,38 @@ function wireInlineTransport(root,page){
 }
 
 function wireQuickActions(scope){
- const actions={'问天气':()=>toast('演示模式：可继续规划行程'),'坐地铁':()=>go('home'),'行程规划':startPlanningPrompt,'今日签运':()=>toast('今日宜出发，去发现春城的小美好'),'领取优惠券':()=>toast('优惠券已放入你的演示卡包')};
- scope.querySelectorAll('[data-node-id="9047:21761"]').forEach(row=>{row.classList.add('quick-actions-scroll');row.querySelectorAll('p').forEach(p=>{const action=actions[p.textContent.trim()];if(action)makePickerAction(p.parentElement,p.textContent.trim(),action)})});
+ const actions={'问天气':()=>toast('演示模式：可继续规划行程'),'坐地铁':()=>go('home'),'行程规划':startPlanningPrompt,'路线规划':startPlanningPrompt,'今日签运':()=>toast('今日宜出发，去发现春城的小美好'),'领取优惠券':()=>toast('优惠券已放入你的演示卡包')};
+ scope.querySelectorAll('[data-node-id="9047:21761"]').forEach(row=>{row.classList.add('quick-actions-scroll');row.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='行程规划')p.textContent='路线规划';const action=actions[p.textContent.trim()];if(action)makePickerAction(p.parentElement,p.textContent.trim(),action)})});
+}
+
+// Continue planning beneath the current answer, reusing the original destination art.
+function continuePlanningCard(destination){
+ state.destination=destination?[destination]:[];state.request='';state.kind='custom';
+ const scroll=$('#screen .route-result-scroll')||$('#screen .result-recommendation-content');
+ if(!scroll){go('destination');return}
+ if(planningContext?.block)planningContext.block.inert=true;
+ const template=document.createElement('div');template.innerHTML=screens[ids.destination];
+ const block=document.createElement('section');block.className='continued-planning';block.setAttribute('aria-label','添加目的地和路线规划');
+ if(scroll.classList.contains('result-recommendation-content'))block.classList.add('continued-planning-inset');
+ const bubble=template.querySelector('[data-name="气泡"]').cloneNode(true);bubble.style.top='16px';block.append(bubble);
+ const art=document.createElement('div');art.className='continued-planning-art';art.append(template.querySelector('[data-name="出行目的"]').cloneNode(true));block.append(art);
+ scroll.append(block);planningContext={page:current,block,screenNodes:[...$('#screen').childNodes],layerNodes:[...$('#layer').childNodes]};
+ const ps=[...block.querySelectorAll('p')];
+ const origin=ps.find(p=>p.textContent.trim()==='昆明市西山区万达南塔');origin.dataset.planningField='origin';
+ const endpoint=ps.find(p=>p.textContent.trim()==='输入终点');endpoint.dataset.planningField='destination';
+ makePickerAction(origin.closest('[data-name^="H:44/"]'),'选择规划出发点',()=>{returnTo='origin';go('search')});
+ makePickerAction(endpoint.closest('[data-name^="H:44/"]'),'选择规划目的地',()=>{returnTo='destination';go('search')});
+ const action=(label,fn)=>{const p=ps.find(p=>p.textContent.trim()===label);if(p)makePickerAction(p.parentElement,label,fn)};
+ action('出行偏好',()=>go('preferences'));
+ action('智能规划',()=>{if(!state.destination.length){returnTo='destination';go('search');return}state.request='';state.kind='custom';plan()});
+ ['下班放松','周边游玩','昆明旅游'].forEach((label,i)=>{const p=ps.find(p=>p.textContent.includes(label));if(p)makePickerAction(p.parentElement,label,()=>{const kind=['relax','nearby','travel'][i];state.kind=kind;go(kind)})});
+ refreshPlanningCard();persist();block.scrollIntoView({block:'end',behavior:'smooth'});
+}
+function refreshPlanningCard(){
+ if(!planningContext)return;const block=planningContext.block;
+ block.querySelector('[data-planning-field="origin"]').textContent=state.origin;
+ const endpoint=block.querySelector('[data-planning-field="destination"]');endpoint.textContent=state.destination[0]||'输入终点';endpoint.title=state.destination[0]||'';endpoint.classList.toggle('continued-planning-placeholder',!state.destination.length);
+}
+function restorePlanningCard(){
+ clearTimeout(timer);const context=planningContext;current=context.page;$('#screen').dataset.page=current;$('#screen').replaceChildren(...context.screenNodes);$('#layer').replaceChildren(...context.layerNodes);refreshPlanningCard();context.block.scrollIntoView({block:'end',behavior:'auto'});window.location.hash=current;persist();
 }

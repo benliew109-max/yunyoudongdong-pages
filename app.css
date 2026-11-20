@@ -108,3 +108,5 @@ body{overflow:hidden}#viewport{overflow:clip}.content{height:606px}
 .inline-route-option .inline-route-status{width:100%!important;height:auto!important;min-height:34px;gap:6px;flex-wrap:wrap}
 .inline-route-status>p{flex:1 1 auto;white-space:normal;overflow-wrap:anywhere}
 .inline-route-status>div{flex-shrink:0;max-width:100%}
+
+.continued-planning{position:relative;width:375px;height:398px;flex-shrink:0;isolation:isolate}.continued-planning-art{position:absolute;inset:0;height:812px;transform:translateY(-89px)}.continued-planning-inset{margin-inline:-16px}.continued-planning [data-planning-field]{max-width:190px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.continued-planning [data-planning-field="destination"]{color:#1a1a1a}.continued-planning .continued-planning-placeholder{color:#8d9199!important}
