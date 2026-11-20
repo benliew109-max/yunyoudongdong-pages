@@ -94,3 +94,17 @@ body{overflow:hidden}#viewport{overflow:clip}.content{height:606px}
 #screen [data-name="气泡"] p{width:auto;max-width:240px;min-width:0;flex-shrink:1;white-space:normal;overflow-wrap:anywhere}
 #screen[data-page="thinking"] [data-name="气泡"],#screen[data-page="dayThinking"] [data-name="气泡"],#screen .route-result-scroll [data-name="气泡"]{max-width:264px}
 #screen[data-page="thinking"] [data-name="气泡"] p,#screen[data-page="dayThinking"] [data-name="气泡"] p,#screen .route-result-scroll [data-name="气泡"] p{max-width:240px}
+
+/* Shared route-tab states and fluid nested transport alternatives. */
+.inline-route-card [data-name="Navbar_Left round"]{width:100%!important;max-width:100%}
+.inline-route-card .inline-route-tab{background:#f7f9fa!important;border-radius:100px!important;color:#1a1a1a!important}
+.inline-route-card .inline-route-tab p{color:#1a1a1a!important;font-weight:400!important}
+.inline-route-card .inline-route-tab[aria-pressed="true"]{background:#a3fff3!important}
+.inline-route-card .inline-route-tab[aria-pressed="true"] p{font-weight:600!important}
+.inline-route-option{padding:0!important;width:100%!important;max-width:100%;min-width:0;box-shadow:none!important;filter:none!important}
+.inline-route-option div,.inline-route-option p{max-width:100%;min-width:0}
+.inline-route-option>div{width:100%!important}
+.inline-route-option .inline-route-badges{width:100%;flex-wrap:wrap}
+.inline-route-option .inline-route-status{width:100%!important;height:auto!important;min-height:34px;gap:6px;flex-wrap:wrap}
+.inline-route-status>p{flex:1 1 auto;white-space:normal;overflow-wrap:anywhere}
+.inline-route-status>div{flex-shrink:0;max-width:100%}

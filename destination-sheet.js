@@ -131,13 +131,14 @@ function wireInlineTransport(root,page){
  root.querySelectorAll('p').forEach(p=>{if(p.textContent.trim()==='起点：从 昆明市西山区万达南塔 出发'){p.textContent='起点：从 '+state.origin+' 出发';p.style.lineHeight='24px';p.style.fontSize='16px';}});
  const tabs=[...root.querySelectorAll('p')].filter(p=>['推荐','最省时','费用低'].includes(p.textContent.trim()));
  const card=tabs[0]?.closest('[data-name="·"]');if(!card)return;
+ card.classList.add('inline-route-card');const paintTabs=selected=>tabs.forEach((tab,i)=>{tab.parentElement.classList.add('inline-route-tab');tab.parentElement.setAttribute('aria-pressed',String(i===selected));});paintTabs(0);
  const original=[...card.children].slice(1).map(n=>n.outerHTML).join('');
  const restoreActions=()=>{[...card.querySelectorAll('p')].forEach(p=>{if(['其他方式','路线规划'].includes(p.textContent.trim()))makePickerAction(p.parentElement,p.textContent.trim(),()=>{lookupState.origin=state.origin;openLookupDestination(state.destination[0]||'巡津街')});if(p.textContent.trim()==='去导航'){p.onclick=null;p.removeAttribute('role');p.removeAttribute('aria-label');makePickerAction(p.parentElement,'导航到'+(state.destination[0]||'巡津街'),()=>{lookupState.origin=state.origin;lookupState.destination=state.destination[0]||'巡津街';saveLookup();lookupSelected=0;go('lookupDetail')})}})};
  tabs.forEach((tab,i)=>makePickerAction(tab.parentElement,'路线方案：'+tab.textContent.trim(),()=>{
- tabs.forEach((t,j)=>{t.parentElement.classList.toggle('inline-route-selected',j===i);t.parentElement.setAttribute('aria-pressed',String(i===j))});
+ paintTabs(i);
  [...card.children].slice(1).forEach(n=>n.remove());card.insertAdjacentHTML('beforeend',original);
- if(i){const holder=document.createElement('div');holder.innerHTML=screens[ids.pureResults];const cards=holder.querySelector('[data-node-id="9153:29356"]');const candidate=cards?.children[i];if(candidate){const buttons=card.lastElementChild;[...card.children].slice(1,-1).forEach(n=>n.remove());const choice=candidate.cloneNode(true);choice.style.cssText='position:relative;width:100%;height:auto';card.insertBefore(choice,buttons);}}
- restoreActions();}));restoreActions();
+ if(i){const holder=document.createElement('div');holder.innerHTML=screens[ids.pureResults];const cards=holder.querySelector('[data-node-id="9153:29356"]');const candidate=cards?.children[i];if(candidate){const buttons=card.lastElementChild;[...card.children].slice(1,-1).forEach(n=>n.remove());const choice=candidate.cloneNode(true);choice.style.cssText='position:relative;width:100%;height:auto';choice.classList.add('inline-route-option');choice.querySelectorAll('[data-node-id="9153:29367"],[data-node-id="9153:29403"],[data-node-id="9153:29438"]').forEach(row=>row.classList.add('inline-route-badges'));choice.lastElementChild.classList.add('inline-route-status');card.insertBefore(choice,buttons);}}
+ restoreActions();const detail=root.querySelector('[data-name="行程规划"]'),bg=root.querySelector('[data-name="路线推荐"] > [data-name="bg"]');if(detail&&bg){const scale=root.getBoundingClientRect().width/375;const end=(detail.getBoundingClientRect().bottom-root.getBoundingClientRect().top)/scale;bg.style.height=(end+16-parseFloat(getComputedStyle(bg).top))+'px';root.style.height=Math.max(812,end+48)+'px';}}));restoreActions();
 }
 
 function wireQuickActions(scope){
