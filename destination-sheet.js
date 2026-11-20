@@ -141,6 +141,6 @@ function wireInlineTransport(root,page){
 }
 
 function wireQuickActions(scope){
- const actions={'问天气':()=>toast('演示模式：可继续规划行程'),'坐地铁':()=>go('home'),'行程规划':()=>{lookupState.origin=state.origin;const place=state.destination[0];if(place)openLookupDestination(place);else go('pureSearch')},'今日签运':()=>toast('今日宜出发，去发现春城的小美好'),'领取优惠券':()=>toast('优惠券已放入你的演示卡包')};
+ const actions={'问天气':()=>toast('演示模式：可继续规划行程'),'坐地铁':()=>go('home'),'行程规划':startPlanningPrompt,'今日签运':()=>toast('今日宜出发，去发现春城的小美好'),'领取优惠券':()=>toast('优惠券已放入你的演示卡包')};
  scope.querySelectorAll('[data-node-id="9047:21761"]').forEach(row=>{row.classList.add('quick-actions-scroll');row.querySelectorAll('p').forEach(p=>{const action=actions[p.textContent.trim()];if(action)makePickerAction(p.parentElement,p.textContent.trim(),action)})});
 }
